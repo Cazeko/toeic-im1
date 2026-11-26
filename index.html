@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>무적문장 110</title>
+<meta name="description" content="토익스피킹 IM1(110점) 목표 24시간 만능문장 암기 앱">
+<meta name="theme-color" content="#EEF1F4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#11161C" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="무적문장">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preload" href="fonts/pretendard-subset.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+:root { color-scheme: light; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); -webkit-text-size-adjust: 100%; }
+body { margin: 0; font-size: 14px; -webkit-tap-highlight-color: transparent; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+</style>
+<script>
+if ("serviceWorker" in navigator) addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+</script>
+</head>
+<body>
+<style>
+/* Pretendard (SIL OFL 1.1, github.com/orioncactus/pretendard) — variable font, subset to the glyphs this app uses */
+@font-face { font-family: "Pretendard"; src: url(fonts/pretendard-subset.woff2) format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+/* Layout: one study column. Header + section tabs (plan / sentences / tips), then the active section. */
+:root {
+  --bg: #EEF1F4; --surface: #FFFFFF; --ink: #18212B; --muted: #5B6875; --line: #D5DCE3;
+  --rec: #D9363E; --rec-soft: #FBE3E4; --ok: #1F7A55; --ok-soft: #DDF1E7;
+  --slot-bg: #FFEDB8; --slot-ink: #6B4A00; --miss: #B4232A; --info: #2D5BA8; --info-soft: #E2EAF7;
+  --f-display: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --f-body: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --f-mono: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #11161C; --surface: #1A2129; --ink: #E7ECF1; --muted: #95A2AF; --line: #2B3540;
+  --rec: #FF5C63; --rec-soft: #3A1E22; --ok: #4CC38A; --ok-soft: #16302A;
+  --slot-bg: #3A3014; --slot-ink: #F3D27A; --miss: #FF7A80; --info: #8FB4F0; --info-soft: #1C2A40; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #11161C; --surface: #1A2129; --ink: #E7ECF1; --muted: #95A2AF; --line: #2B3540;
+  --rec: #FF5C63; --rec-soft: #3A1E22; --ok: #4CC38A; --ok-soft: #16302A;
+  --slot-bg: #3A3014; --slot-ink: #F3D27A; --miss: #FF7A80; --info: #8FB4F0; --info-soft: #1C2A40; color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.6; }
+.wrap { max-width: 780px; margin: 0 auto; padding-block: 28px 72px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex; flex-direction: column; gap: 20px; }
+button { font: inherit; color: inherit; cursor: pointer; }
+a { color: var(--info); }
+button:focus-visible, textarea:focus-visible, .card:focus-visible, a:focus-visible { outline: 2px solid var(--rec); outline-offset: 2px; }
+
+.top { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; }
+.rec { font-family: var(--f-mono); font-size: 12px; letter-spacing: .12em; color: var(--rec); display: flex; align-items: center; gap: 8px; }
+.rec::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--rec); animation: blink 1.6s steps(2) infinite; }
+@keyframes blink { 50% { opacity: .25; } }
+@media (prefers-reduced-motion: reduce) { .rec::before { animation: none; } }
+h1 { font-family: var(--f-display); font-weight: 700; font-size: clamp(30px, 6vw, 42px); line-height: 1.1; margin: 6px 0 0; letter-spacing: -.01em; }
+h2 { font-family: var(--f-display); font-weight: 700; font-size: 21px; margin: 0; text-wrap: balance; }
+h3 { font-size: 16px; font-weight: 600; margin: 0; }
+.sub { color: var(--muted); margin: 6px 0 0; max-width: 60ch; }
+.meter { min-width: 200px; flex: 0 1 240px; }
+.meter-num { font-family: var(--f-display); font-size: 28px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.meter-num small { font-size: 14px; color: var(--muted); font-weight: 500; }
+.bar { height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; margin-top: 6px; }
+.bar > i { display: block; height: 100%; width: 0; background: var(--ok); transition: width .3s; }
+
+.nav { display: grid; grid-template-columns: repeat(3, 1fr); background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 4px; gap: 4px; }
+.nav button { border: 0; background: none; padding: 10px 8px; border-radius: 9px; font-weight: 600; color: var(--muted); }
+.nav button[aria-selected="true"] { background: var(--ink); color: var(--bg); }
+
+.chips { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: thin; }
+.chip { flex: 0 0 auto; text-align: left; border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: 8px 12px; display: grid; gap: 1px; }
+.chip b { font-weight: 600; font-size: 14px; }
+.chip span { font-family: var(--f-mono); font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.chip[aria-pressed="true"] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.toolbar { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; justify-content: space-between; }
+.seg { display: inline-flex; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 3px; }
+.seg button { border: 0; background: none; padding: 5px 12px; border-radius: 7px; font-weight: 500; color: var(--muted); font-size: 14px; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.toggle { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-size: 14px; user-select: none; cursor: pointer; }
+.toggle input { accent-color: var(--rec); width: 16px; height: 16px; }
+.hint-line { font-size: 13px; color: var(--muted); margin: 0; }
+
+.tag { font-family: var(--f-mono); font-size: 12px; letter-spacing: .03em; color: var(--muted); }
+.src { font-size: 11px; font-weight: 600; border-radius: 99px; padding: 1px 8px; background: var(--info-soft); color: var(--info); white-space: nowrap; }
+.en { font-family: var(--f-display); font-weight: 500; line-height: 1.35; }
+mark.slot { background: var(--slot-bg); color: var(--slot-ink); padding: 0 .2em; border-radius: 4px; }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: 10px 16px; font-weight: 500; }
+.btn.sm { padding: 6px 12px; font-size: 14px; }
+.btn.primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.btn.good { background: var(--ok-soft); color: var(--ok); border-color: transparent; font-weight: 600; }
+.btn.again { background: var(--rec-soft); color: var(--rec); border-color: transparent; font-weight: 600; }
+.icon-btn { border: 1px solid var(--line); background: var(--surface); border-radius: 50%; width: 36px; height: 36px; display: inline-grid; place-items: center; flex: 0 0 auto; }
+.icon-btn svg { width: 16px; height: 16px; fill: currentColor; }
+.empty { text-align: center; padding: 48px 16px; color: var(--muted); background: var(--surface); border: 1px dashed var(--line); border-radius: 16px; }
+.tipline { font-size: 13px; color: var(--info); margin: 0; }
+.tipline::before { content: "TIP "; font-family: var(--f-mono); font-size: 11px; font-weight: 500; }
+
+.deck-meta { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 26px 24px; min-height: 290px;
+  display: flex; flex-direction: column; gap: 16px; box-shadow: 0 12px 32px -22px rgba(0,0,0,.35); }
+.card-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+.card-head .left { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; min-width: 0; }
+.known-pill { font-size: 12px; font-weight: 600; color: var(--ok); background: var(--ok-soft); border-radius: 99px; padding: 2px 10px; }
+.card-ko { font-size: clamp(19px, 4.4vw, 23px); font-weight: 500; margin: 0; line-height: 1.5; }
+.card-en-wrap { border-top: 1px dashed var(--line); padding-top: 16px; margin-top: auto; display: grid; gap: 10px; }
+.card-en-row { display: flex; gap: 12px; align-items: flex-start; }
+.card-en { font-size: clamp(21px, 4.8vw, 27px); margin: 0; flex: 1; min-width: 0; }
+.reveal { margin-top: auto; border: 1px dashed var(--line); background: none; border-radius: 12px; padding: 16px; color: var(--muted); }
+.card-actions { display: grid; grid-template-columns: auto 1fr 1fr auto; gap: 8px; }
+.kbd { font-size: 12px; color: var(--muted); text-align: center; margin: 0; }
+.kbd kbd { font-family: var(--f-mono); font-size: 11px; border: 1px solid var(--line); border-radius: 4px; padding: 0 5px; background: var(--surface); }
+
+.group-title { font-family: var(--f-display); font-size: 17px; font-weight: 700; margin: 10px 0 0; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.list { list-style: none; margin: 0; padding: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
+.row { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; padding: 13px 14px; align-items: start; }
+.row + .row { border-top: 1px solid var(--line); }
+.row .text { min-width: 0; display: grid; gap: 2px; }
+.row .en { font-size: 17px; margin: 0; }
+.row .ko { color: var(--muted); margin: 0; font-size: 14px; }
+.masked .en:not(.peek) { color: transparent; background: repeating-linear-gradient(90deg, var(--line) 0 70%, transparent 70% 100%); background-size: 14px 100%; border-radius: 4px; cursor: pointer; }
+.masked .en:not(.peek) mark.slot { background: none; color: transparent; }
+.check { width: 26px; height: 26px; border-radius: 7px; border: 1.5px solid var(--line); background: none; display: grid; place-items: center; margin-top: 2px; padding: 0; }
+.check svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 3; opacity: 0; }
+.check[aria-pressed="true"] { background: var(--ok); border-color: var(--ok); color: var(--surface); }
+.check[aria-pressed="true"] svg { opacity: 1; }
+
+.test { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 24px; display: grid; gap: 14px; }
+.test .card-ko { font-size: 20px; }
+textarea { width: 100%; min-height: 96px; resize: vertical; font: 500 18px/1.45 var(--f-display); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.result { display: grid; gap: 10px; border-top: 1px dashed var(--line); padding-top: 16px; }
+.score { font-family: var(--f-display); font-weight: 700; font-size: 22px; font-variant-numeric: tabular-nums; }
+.score.pass { color: var(--ok); } .score.fail { color: var(--rec); }
+.answer { font-size: 20px; margin: 0; }
+.answer .hit { color: var(--ok); }
+.answer .miss { color: var(--miss); text-decoration: underline wavy; text-underline-offset: 4px; }
+.answer .free { background: var(--slot-bg); color: var(--slot-ink); border-radius: 4px; padding: 0 .15em; }
+.note { font-size: 13px; color: var(--muted); margin: 0; }
+.hint { font-family: var(--f-mono); font-size: 14px; color: var(--muted); margin: 0; overflow-wrap: anywhere; }
+
+/* plan */
+.plan { display: grid; gap: 12px; }
+.block { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; display: grid; gap: 10px; }
+.block-head { display: flex; gap: 12px; align-items: baseline; justify-content: space-between; flex-wrap: wrap; }
+.block-head .hrs { font-family: var(--f-mono); font-size: 12px; color: var(--rec); font-variant-numeric: tabular-nums; }
+.block.done { border-color: var(--ok); }
+.block.done .hrs { color: var(--ok); }
+.task { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: start; }
+.task p { margin: 0; }
+.task.on p { color: var(--muted); text-decoration: line-through; }
+.lead { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: grid; gap: 8px; }
+.lead ul, .tipcard ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
+
+/* tips */
+.timer { background: var(--ink); color: var(--bg); border-radius: 18px; padding: 20px; display: grid; gap: 14px; }
+.timer .tag { color: inherit; opacity: .7; }
+.timer-presets { display: flex; flex-wrap: wrap; gap: 6px; }
+.timer-presets button { border: 1px solid color-mix(in srgb, var(--bg) 30%, transparent); background: none; color: inherit; border-radius: 8px; padding: 5px 11px; font-size: 14px; }
+.timer-presets button[aria-pressed="true"] { background: var(--rec); border-color: var(--rec); color: #fff; }
+.clock { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.clock b { font-family: var(--f-display); font-size: 56px; line-height: 1; font-variant-numeric: tabular-nums; }
+.clock span { font-size: 17px; font-weight: 600; }
+.clock.speak span { color: var(--rec); }
+.steps { display: flex; flex-wrap: wrap; gap: 6px; }
+.steps i { font-style: normal; font-family: var(--f-mono); font-size: 11px; padding: 2px 8px; border-radius: 99px; border: 1px solid color-mix(in srgb, var(--bg) 25%, transparent); opacity: .6; }
+.steps i.now { opacity: 1; background: var(--rec); border-color: var(--rec); color: #fff; }
+.steps i.past { opacity: .35; text-decoration: line-through; }
+.timer .btn { background: var(--bg); color: var(--ink); border-color: var(--bg); }
+.timer .btn.ghost { background: none; color: inherit; border-color: color-mix(in srgb, var(--bg) 40%, transparent); }
+.tips { display: grid; gap: 14px; }
+.tipcard { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: grid; gap: 12px; }
+.tipcard-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.tipcard h4 { font-size: 13px; font-weight: 600; margin: 0 0 4px; color: var(--muted); letter-spacing: .02em; }
+.tipcard .warn li::marker { color: var(--rec); }
+.tipcard code, .lead code { font-family: var(--f-display); font-size: 15px; font-weight: 500; }
+.ex { background: var(--bg); border-radius: 10px; padding: 12px 14px; font-family: var(--f-display); font-size: 15.5px; line-height: 1.5; display: grid; gap: 3px; }
+.ex span { font-family: var(--f-body); font-size: 12px; color: var(--muted); }
+.tbl-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 12px; color: var(--muted); font-weight: 600; }
+td code { font-size: 14px; }
+.links { display: grid; gap: 4px; font-size: 14px; }
+
+@media (max-width: 480px) {
+  .card { padding: 22px 18px; min-height: 260px; }
+  .card-actions { grid-template-columns: 1fr 1fr; }
+  .card-actions .navbtn { display: none; }
+  .row { gap: 10px; padding: 12px; }
+  .clock b { font-size: 46px; }
+}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <div class="rec">TOEIC SPEAKING · IM1 · 24H</div>
+      <h1>무적문장 110</h1>
+      <p class="sub">시계토끼 강의 3시간 반, 만능문장 313개, 2주 IH 후기를 합쳐 24시간 안에 IM1을 만드는 순서대로 정리했어요.</p>
+    </div>
+    <div class="meter" aria-live="polite">
+      <div class="meter-num"><span id="knownCount">0</span> <small>/ <span id="totalCount">0</span> 핵심 문장 외움</small></div>
+      <div class="bar"><i id="barFill"></i></div>
+    </div>
+  </header>
+
+  <nav class="nav" role="tablist" aria-label="메뉴">
+    <button role="tab" data-view="plan" id="nav-plan">24시간 플랜</button>
+    <button role="tab" data-view="sentences" id="nav-sentences">만능문장</button>
+    <button role="tab" data-view="tips" id="nav-tips">꿀팁·타이머</button>
+  </nav>
+
+  <section id="view-plan" hidden></section>
+  <section id="view-sentences" hidden>
+    <div style="display:grid;gap:14px">
+      <div class="chips" id="chips" aria-label="파트 선택"></div>
+      <div class="toolbar">
+        <div class="seg" id="levelSeg" aria-label="범위">
+          <button data-level="tpl">필수 템플릿</button><button data-level="core">핵심</button><button data-level="all">전체</button>
+        </div>
+        <label class="toggle"><input type="checkbox" id="onlyLeft"> 못 외운 문장만</label>
+      </div>
+      <div class="toolbar">
+        <div class="seg" id="modeSeg" aria-label="학습 방식">
+          <button data-mode="card">카드</button><button data-mode="list">목록</button><button data-mode="test">쓰기 테스트</button>
+        </div>
+        <p class="hint-line"><mark class="slot">노란 부분</mark>은 문제에 맞게 바꿔 끼우는 자리</p>
+      </div>
+      <div id="studyArea"></div>
+    </div>
+  </section>
+  <section id="view-tips" hidden></section>
+</div>
+
+<script>
+const DATA = [{"c":"q34","g":"사진 묘사 템플릿","ko":"이 사진은 [사무실]에서 찍힌 사진이다.","en":"This is a picture taken at [an office].","core":true,"add":true,"s":"강의","tip":"장소 앞은 at이면 대부분 맞아요. 길 위는 on the street","id":"q34-1"},{"c":"q34","g":"사진 묘사 템플릿","ko":"이 사진은 실내에서 찍힌 사진이다.","en":"This is a picture taken indoors.","core":true,"add":true,"s":"강의","tip":"어디인지 모르겠으면 indoors / outdoors","id":"q34-2"},{"c":"q34","g":"사진 묘사 템플릿","ko":"이 사진에서 가장 먼저 볼 수 있는 것은 [테이블 앞에 앉아 있는 여자]이다.","en":"The first thing I can see from this picture is [a woman sitting at a table].","core":true,"add":true,"s":"강의","tip":"사람 뒤에 -ing를 붙이면 한 문장으로 사진을 요약할 수 있어요","id":"q34-3"},{"c":"q34","g":"사진 묘사 템플릿","ko":"이 사진에서 가장 먼저 볼 수 있는 것은 [스마트폰을 들고 있는 여자]이다.","en":"The first thing I can see from this picture is [a woman holding a smartphone].","core":true,"add":true,"s":"강의","id":"q34-4"},{"c":"q34","g":"사진 묘사 템플릿","ko":"사진의 전면에서 나는 [많은 기구들]을 볼 수 있다.","en":"In the foreground of the picture, I can see [a lot of equipment].","core":true,"add":true,"s":"강의","tip":"앞·가운데·뒤는 in, 왼쪽·오른쪽은 on the left/right side","id":"q34-5"},{"c":"q34","g":"사진 묘사 템플릿","ko":"사진의 배경에서 나는 [세 명의 사람]을 볼 수 있다.","en":"In the background of the picture, I can see [three people].","core":true,"add":true,"s":"강의","id":"q34-6"},{"c":"q34","g":"사진 묘사 템플릿","ko":"사진의 왼쪽에는 [노트북 앞에 앉아 있는 남자]가 있다.","en":"On the left side of the picture, there is [a man sitting in front of his laptop].","core":true,"add":true,"s":"강의","id":"q34-7"},{"c":"q34","g":"사진 묘사 템플릿","ko":"그들은 서로를 바라보고 있고 정장을 입고 있다.","en":"They are looking at each other and wearing suits.","core":true,"add":true,"s":"강의","tip":"2인 사진: 두 사람을 한 번에 묶는 공통 문장","id":"q34-8"},{"c":"q34","g":"사진 묘사 템플릿","ko":"그들 중 한 명은 남자이다. 나머지 한 명은 여자이다.","en":"One of them is a man. The other is a woman.","core":true,"add":true,"s":"강의","tip":"2인 사진: One of them / The other","id":"q34-9"},{"c":"q34","g":"사진 묘사 템플릿","ko":"그들 중 한 명은 [모자]를 쓰고 있다.","en":"One of them is wearing [a cap].","core":true,"add":true,"s":"강의","tip":"3인 이상: 한 명을 집고 나머지는 The others로 묶어요","id":"q34-10"},{"c":"q34","g":"사진 묘사 템플릿","ko":"그들 중 일부는 [가방을 들고 가고] 있다.","en":"Some of them are [carrying their bags].","core":true,"add":true,"s":"강의","tip":"여러 명이면 한 명씩 말하지 말고 공통점으로 묶어요","id":"q34-11"},{"c":"q34","g":"사진 묘사 템플릿","ko":"그들 대부분은 [캐주얼]을 입고 있다.","en":"Most of them are wearing [casual clothes].","core":true,"add":true,"s":"강의","id":"q34-12"},{"c":"q34","g":"사진 묘사 템플릿","ko":"테이블 위에 [노트북과 스마트폰]이 보인다.","en":"On the table, I can see [a laptop and a smartphone].","core":true,"add":true,"s":"강의","tip":"사람을 다 말했으면 사물이나 배경 한 문장","id":"q34-13"},{"c":"q34","g":"사진 묘사 템플릿","ko":"그녀는 [분홍색 옷]을 입고 있다.","en":"She's wearing [pink clothes].","core":true,"add":true,"s":"강의","tip":"cardigan 같은 단어가 안 떠오르면 clothes처럼 넓은 단어로","id":"q34-14"},{"c":"q34","g":"사진 묘사 템플릿","ko":"전반적으로 [그 여자]는 바쁜 것 같다.","en":"Overall, it seems like [the woman] is busy.","core":true,"add":true,"s":"강의","tip":"마무리 문장은 1인 사진에서만. 여러 명이면 생략","id":"q34-15"},{"c":"q34","g":"장소 (This is a picture taken ...)","ko":"이 사진은 공원에서 찍힌 사진이다.","en":"This is a picture taken at a park.","core":true,"id":"q34-16"},{"c":"q34","g":"장소 (This is a picture taken ...)","ko":"이 사진은 레스토랑에서 찍힌 사진이다.","en":"This is a picture taken at a restaurant.","core":true,"id":"q34-17"},{"c":"q34","g":"장소 (This is a picture taken ...)","ko":"이 사진은 도서관에서 찍힌 사진이다.","en":"This is a picture taken at a library.","core":false,"id":"q34-18"},{"c":"q34","g":"장소 (This is a picture taken ...)","ko":"이 사진은 실외에서 찍힌 사진이다.","en":"This is a picture taken outdoors.","core":true,"id":"q34-19"},{"c":"q34","g":"장소 (This is a picture taken ...)","ko":"이 사진은 실험실에서 찍힌 사진이다.","en":"This is a picture taken at a laboratory.","core":false,"id":"q34-20"},{"c":"q34","g":"장소 (This is a picture taken ...)","ko":"이 사진은 옷가게에서 찍힌 사진이다.","en":"This is a picture taken at a clothing store.","core":false,"id":"q34-21"},{"c":"q34","g":"장소 (This is a picture taken ...)","ko":"이 사진은 창고에서 찍힌 사진이다.","en":"This is a picture taken at a warehouse.","core":false,"id":"q34-22"},{"c":"q34","g":"장소 (This is a picture taken ...)","ko":"이 사진은 카페에서 찍힌 사진이다.","en":"This is a picture taken at a cafe.","core":true,"id":"q34-23"},{"c":"q34","g":"장소 (This is a picture taken ...)","ko":"이 사진은 구내식당에서 찍힌 사진이다.","en":"This is a picture taken at a cafeteria.","core":false,"id":"q34-24"},{"c":"q34","g":"장소 (This is a picture taken ...)","ko":"이 사진은 길 위에서 찍힌 사진이다.","en":"This is a picture taken on the street.","core":true,"id":"q34-25"},{"c":"q34","g":"장소 (This is a picture taken ...)","ko":"이 사진은 공사장에서 찍힌 사진이다.","en":"This is a picture taken at a construction site.","core":false,"id":"q34-26"},{"c":"q34","g":"가장 먼저 보이는 것","ko":"이 사진에서 가장 먼저 볼 수 있는 것은 두 명의 여자이다.","en":"The first thing I can see from this picture is two women.","core":true,"id":"q34-27"},{"c":"q34","g":"가장 먼저 보이는 것","ko":"이 사진에서 가장 먼저 볼 수 있는 것은 세 명의 남자이다.","en":"The first thing I can see from this picture is three men.","core":true,"id":"q34-28"},{"c":"q34","g":"위치 표현 (전면, 중심, 좌우, 배경)","ko":"사진의 전면에서 나는 책상 위에 올려진 많은 사무용품들을 볼 수 있다.","en":"In the foreground of the picture, I can see a lot of office supplies on the desk.","core":true,"id":"q34-29"},{"c":"q34","g":"위치 표현 (전면, 중심, 좌우, 배경)","ko":"사진의 중심에 분수대가 있다.","en":"In the middle of the picture, there is a fountain.","core":true,"id":"q34-30"},{"c":"q34","g":"위치 표현 (전면, 중심, 좌우, 배경)","ko":"사진의 왼쪽에 인도가 있다.","en":"On the left side of the picture, there is a sidewalk.","core":true,"id":"q34-31"},{"c":"q34","g":"위치 표현 (전면, 중심, 좌우, 배경)","ko":"사진의 오른쪽에 큰 창문이 있다.","en":"On the right side of the picture, there is a large window.","core":true,"id":"q34-32"},{"c":"q34","g":"위치 표현 (전면, 중심, 좌우, 배경)","ko":"사진의 배경에는 나는 많은 건물들과 나무들을 볼 수 있다.","en":"In the background of the picture, I can see many buildings and trees.","core":true,"id":"q34-33"},{"c":"q34","g":"사람들의 위치와 복장 (전체)","ko":"그녀의 옆에 또 다른 여자가 있다.","en":"Next to her, there is another woman.","core":true,"id":"q34-34"},{"c":"q34","g":"사람들의 위치와 복장 (전체)","ko":"그녀의 뒤에 나는 서 있는 두 명의 남자를 볼 수 있다.","en":"Behind her, I can see two men standing.","core":true,"id":"q34-35"},{"c":"q34","g":"사람들의 위치와 복장 (전체)","ko":"그들 중 대부분은 정장을 입고 있다.","en":"Most of them are wearing formal clothes.","core":true,"id":"q34-36"},{"c":"q34","g":"사람들의 위치와 복장 (전체)","ko":"그들 중 일부는 캐주얼을 입고 있다.","en":"Some of them are wearing casual clothes.","core":true,"id":"q34-37"},{"c":"q34","g":"사람들의 위치와 복장 (전체)","ko":"사진을 찍고 있는 남자가 있다.","en":"There is a man taking a picture.","core":false,"id":"q34-38"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그녀는 가방 안을 들여다보고 있다.","en":"She's looking into a bag.","core":false,"id":"q34-39"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그는 고객들을 도우고 있다.","en":"He is helping customers.","core":false,"id":"q34-40"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그녀는 강아지를 산책시키고 있다.","en":"She's walking a dog.","core":false,"id":"q34-41"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그는 무언가를 들고 있다.","en":"He is holding something.","core":true,"id":"q34-42"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그녀는 메뉴판을 보고 있다.","en":"She's looking at a menu.","core":false,"id":"q34-43"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그는 무언가를 쓰고 있다.","en":"He is writing something.","core":false,"id":"q34-44"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그녀는 서류를 들고 있다.","en":"She's holding a document.","core":true,"id":"q34-45"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그는 무언가를 찾고 있다.","en":"He is looking for something.","core":false,"id":"q34-46"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그녀는 쇼핑백을 들고 있다.","en":"She's holding a shopping bag.","core":false,"id":"q34-47"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그는 물건을 집으려고 손을 뻗고 있다.","en":"He is reaching for an item.","core":false,"id":"q34-48"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그녀는 스마트폰을 보고 있다.","en":"She's looking at a smartphone.","core":true,"id":"q34-49"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그는 물을 마시고 있다.","en":"He is drinking some water.","core":false,"id":"q34-50"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그녀는 요리를 하고 있다.","en":"She's cooking.","core":false,"id":"q34-51"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그는 바닥에 누워 있다.","en":"He is lying on the ground.","core":false,"id":"q34-52"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그녀는 유모차를 밀고 있다.","en":"She's pushing a baby stroller.","core":false,"id":"q34-53"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그는 발표를 하고 있다.","en":"He is making a presentation.","core":true,"id":"q34-54"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그녀는 음식을 고객들에게 서빙하고 있다.","en":"She's serving food to customers.","core":true,"id":"q34-55"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그는 비닐봉지를 들고 있다.","en":"He is holding a plastic bag.","core":false,"id":"q34-56"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그녀는 종이 한 장을 줍고 있다.","en":"She's picking up a piece of paper.","core":false,"id":"q34-57"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그는 신용카드를 건네주고 있다.","en":"He is handing over a credit card.","core":false,"id":"q34-58"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그는 태블릿 PC를 사용하고 있다.","en":"He's using a tablet PC.","core":false,"id":"q34-59"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그는 옷걸이에 옷을 걸고 있다.","en":"He is hanging his clothes on a rack.","core":false,"id":"q34-60"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그녀는 컵을 들고 있다.","en":"She's holding a cup.","core":false,"id":"q34-61"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그녀는 핸드백을 들고 있다.","en":"She's holding a purse.","core":false,"id":"q34-62"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그는 음식을 전자레인지에 넣고 있다.","en":"He is putting some food into a microwave.","core":false,"id":"q34-63"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그녀는 음식을 먹고 있다.","en":"She's eating some food.","core":false,"id":"q34-64"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그는 자전거를 타고 있다.","en":"He is riding a bicycle.","core":false,"id":"q34-65"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그녀는 전화 통화를 하고 있다.","en":"She's talking on the phone.","core":true,"id":"q34-66"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그는 자켓을 입고 있다.","en":"He is wearing a jacket.","core":true,"id":"q34-67"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그녀는 핸드백을 어깨 위에 매고 있다.","en":"She has her purse on her shoulder.","core":false,"id":"q34-68"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그는 주문을 받고 있다.","en":"He's taking an order.","core":false,"id":"q34-69"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그녀는 컴퓨터로 일하고 있다.","en":"She's working on a computer.","core":false,"id":"q34-70"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그는 노트북으로 일하고 있다.","en":"He is working on a laptop.","core":true,"id":"q34-71"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그는 게시판에 무언가를 붙이고 있다.","en":"He is putting something on the bulletin board.","core":false,"id":"q34-72"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그는 보트를 타고 있다.","en":"He is riding a boat.","core":false,"id":"q34-73"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그는 트럭에 박스를 싣고 있다.","en":"He is loading a box into a truck.","core":false,"id":"q34-74"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그는 청소기로 청소를 하고 있다.","en":"He is cleaning with a vacuum cleaner.","core":false,"id":"q34-75"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그는 카트를 밀고 있다.","en":"He's pushing a cart.","core":true,"id":"q34-76"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그는 제품을 보고 있다.","en":"He is looking at a product.","core":true,"id":"q34-77"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그는 해변에서 쓰는 의자 위에서 쉬고 있다.","en":"He's relaxing on a beach chair.","core":false,"id":"q34-78"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그는 한 손을 들고 있다.","en":"He is raising his hand.","core":false,"id":"q34-79"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그는 노를 젓고 있다.","en":"He is paddling a boat.","core":false,"id":"q34-80"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그녀는 낚시를 하고 있다.","en":"She's fishing.","core":false,"id":"q34-81"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그는 책을 스캔하고 있다.","en":"He's scanning a book.","core":false,"id":"q34-82"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그는 벽에 기대고 있다.","en":"He is leaning against the wall.","core":false,"id":"q34-83"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그는 박스를 운반 중이다.","en":"He is carrying a box.","core":true,"id":"q34-84"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그녀는 물건을 받고 있다.","en":"She's receiving an item.","core":false,"id":"q34-85"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"그녀는 화면을 가리키고 있다.","en":"She's pointing at the screen.","core":true,"id":"q34-86"},{"c":"q34","g":"한 사람의 동작 (He / She)","ko":"나는 미소 짓는 여자를 볼 수 있다.","en":"I can see a woman smiling.","core":true,"id":"q34-87"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 계단을 내려오고 있다.","en":"They're walking down the stairs.","core":false,"id":"q34-88"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 계산대에 서 있다.","en":"They're standing at the checkout counter.","core":false,"id":"q34-89"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 공연을 하고 있다.","en":"They are performing.","core":false,"id":"q34-90"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 공연을 관람하고 있다.","en":"They're watching the performance.","core":false,"id":"q34-91"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 줄 서서 기다리고 있다.","en":"They're waiting in line.","core":true,"id":"q34-92"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 길을 건너고 있다.","en":"They are crossing the street.","core":false,"id":"q34-93"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 길을 걸어가고 있다.","en":"They're walking on the street.","core":true,"id":"q34-94"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 대화를 하고 있다.","en":"They're having a conversation.","core":false,"id":"q34-95"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 문서를 읽고 있다.","en":"They're reading documents.","core":false,"id":"q34-96"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 물건을 정리하고 있다.","en":"They are arranging items.","core":false,"id":"q34-97"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 발표자의 발표를 듣고 있다.","en":"They're listening to the presenter.","core":false,"id":"q34-98"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 벤치에 앉아 있다.","en":"They're sitting on a bench.","core":false,"id":"q34-99"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 복사기를 이용하고 있다.","en":"They're using a copy machine.","core":false,"id":"q34-100"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 서로 얘기하고 있다.","en":"They're talking to each other.","core":true,"id":"q34-101"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 악기를 연주하고 있다.","en":"They're playing musical instruments.","core":false,"id":"q34-102"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 오토바이를 타고 있다.","en":"They're riding motorcycles.","core":false,"id":"q34-103"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 유니폼을 입고 있다.","en":"They're wearing uniforms.","core":false,"id":"q34-104"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 일하고 있다.","en":"They're working.","core":true,"id":"q34-105"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 잔디 위에 앉아 있다.","en":"They're sitting on the grass.","core":false,"id":"q34-106"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 쉬고 있다.","en":"They are relaxing.","core":false,"id":"q34-107"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 지하철에 타고 있다.","en":"They're getting on the subway.","core":false,"id":"q34-108"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 카운터에 서 있다.","en":"They're standing at the counter.","core":true,"id":"q34-109"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 컴퓨터를 이용하고 있다.","en":"They're using computers.","core":true,"id":"q34-110"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 테이블에 앉아 있다.","en":"They're sitting at a table.","core":true,"id":"q34-111"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 해변에서 수영하고 있다.","en":"They're swimming at the beach.","core":false,"id":"q34-112"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 헬멧을 쓰고 있다.","en":"They're wearing helmets.","core":false,"id":"q34-113"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 화상 회의를 하고 있다.","en":"They're having a video conference.","core":false,"id":"q34-114"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 회의를 하고 있다.","en":"They're having a meeting.","core":true,"id":"q34-115"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 백팩을 매고 있다.","en":"They are wearing backpacks.","core":false,"id":"q34-116"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 파라솔 밑에 앉아 있다.","en":"They're sitting under a parasol.","core":false,"id":"q34-117"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 소풍을 하고 있다.","en":"They're having a picnic.","core":false,"id":"q34-118"},{"c":"q34","g":"여러 사람의 동작 (They)","ko":"그들은 책상에 앉아 있다.","en":"They're sitting at desks.","core":false,"id":"q34-119"},{"c":"q34","g":"외모와 옷차림","ko":"그녀는 곱슬머리를 가지고 있다.","en":"She has curly hair.","core":false,"id":"q34-120"},{"c":"q34","g":"외모와 옷차림","ko":"그녀는 흰색 바지를 입고 있다.","en":"She's wearing white pants.","core":false,"id":"q34-121"},{"c":"q34","g":"외모와 옷차림","ko":"그녀는 빨간색 스커트를 입고 있다.","en":"She's wearing a red skirt.","core":false,"id":"q34-122"},{"c":"q34","g":"외모와 옷차림","ko":"그녀는 선글라스를 끼고 있다.","en":"She's wearing sunglasses.","core":true,"id":"q34-123"},{"c":"q34","g":"외모와 옷차림","ko":"그녀는 원피스를 입고 있다.","en":"She's wearing a dress.","core":false,"id":"q34-124"},{"c":"q34","g":"외모와 옷차림","ko":"그녀는 전통 의상을 입고 있다.","en":"She's wearing traditional clothes.","core":false,"id":"q34-125"},{"c":"q34","g":"외모와 옷차림","ko":"그녀는 체크무늬 셔츠를 입고 있다.","en":"She's wearing a checkered shirt.","core":false,"id":"q34-126"},{"c":"q34","g":"외모와 옷차림","ko":"그는 검은색 야구 모자를 쓰고 있다.","en":"He's wearing a black baseball cap.","core":false,"id":"q34-127"},{"c":"q34","g":"외모와 옷차림","ko":"그는 금발 머리를 가지고 있다.","en":"He has blond hair.","core":false,"id":"q34-128"},{"c":"q34","g":"외모와 옷차림","ko":"그는 반바지를 입고 있다.","en":"He is wearing shorts.","core":false,"id":"q34-129"},{"c":"q34","g":"외모와 옷차림","ko":"그는 백발을 가지고 있다.","en":"He has gray hair.","core":false,"id":"q34-130"},{"c":"q34","g":"외모와 옷차림","ko":"그는 손짓 제스처를 취하고 있다.","en":"He is gesturing.","core":false,"id":"q34-131"},{"c":"q34","g":"외모와 옷차림","ko":"그는 스웨터를 입고 있다.","en":"He's wearing a sweater.","core":false,"id":"q34-132"},{"c":"q34","g":"외모와 옷차림","ko":"그는 안경을 쓰고 있다.","en":"He's wearing glasses.","core":true,"id":"q34-133"},{"c":"q34","g":"외모와 옷차림","ko":"그는 작업복을 입고 있다.","en":"He's wearing work clothes.","core":false,"id":"q34-134"},{"c":"q34","g":"외모와 옷차림","ko":"그는 조끼를 입고 있다.","en":"He's wearing a vest.","core":false,"id":"q34-135"},{"c":"q34","g":"외모와 옷차림","ko":"그는 줄무늬 셔츠를 입고 있다.","en":"He's wearing a striped shirt.","core":true,"id":"q34-136"},{"c":"q34","g":"외모와 옷차림","ko":"그는 짧은 머리를 가지고 있다.","en":"He has short hair.","core":true,"id":"q34-137"},{"c":"q34","g":"외모와 옷차림","ko":"그는 청바지를 입고 있다.","en":"He's wearing jeans.","core":false,"id":"q34-138"},{"c":"q34","g":"외모와 옷차림","ko":"그는 남색 티셔츠를 입고 있다.","en":"He is wearing a navy t-shirt.","core":false,"id":"q34-139"},{"c":"q34","g":"외모와 옷차림","ko":"그는 패딩을 입고 있다.","en":"He is wearing a padded jacket.","core":false,"id":"q34-140"},{"c":"q34","g":"외모와 옷차림","ko":"그는 갈색 코트를 입고 있다.","en":"He is wearing a brown coat.","core":false,"id":"q34-141"},{"c":"q34","g":"사물과 배경 묘사","ko":"제품들이 진열대 위에 진열되어 있다.","en":"Products are displayed on the shelves.","core":true,"id":"q34-142"},{"c":"q34","g":"사물과 배경 묘사","ko":"나는 간판을 볼 수 있다.","en":"I can see a signboard.","core":false,"id":"q34-143"},{"c":"q34","g":"사물과 배경 묘사","ko":"나는 교통 표지판들과 신호등을 볼 수 있다.","en":"I can see a traffic sign and a traffic light.","core":false,"id":"q34-144"},{"c":"q34","g":"사물과 배경 묘사","ko":"나는 많은 쌓여 있는 박스들을 볼 수 있다.","en":"I can see many boxes stacked.","core":false,"id":"q34-145"},{"c":"q34","g":"사물과 배경 묘사","ko":"나는 많은 주차되어 있는 차들을 볼 수 있다.","en":"I can see a lot of cars parked.","core":true,"id":"q34-146"},{"c":"q34","g":"사물과 배경 묘사","ko":"나는 몇몇 보트들을 볼 수 있다.","en":"I can see some boats.","core":false,"id":"q34-147"},{"c":"q34","g":"사물과 배경 묘사","ko":"나는 벽에 걸려 있는 그림 몇 개를 볼 수 있다.","en":"I can see some pictures on the wall.","core":true,"id":"q34-148"},{"c":"q34","g":"사물과 배경 묘사","ko":"나는 옷걸이에 걸려 있는 옷들을 볼 수 있다.","en":"I can see some clothes hanging on a rack.","core":false,"id":"q34-149"},{"c":"q34","g":"사물과 배경 묘사","ko":"나는 조명들을 볼 수 있다.","en":"I can see some lights.","core":false,"id":"q34-150"},{"c":"q34","g":"사물과 배경 묘사","ko":"나는 진열되어 있는 많은 옷들을 볼 수 있다.","en":"I can see a lot of clothes on display.","core":false,"id":"q34-151"},{"c":"q34","g":"사물과 배경 묘사","ko":"나는 진열되어 있는 식료품들을 볼 수 있다.","en":"I can see groceries on display.","core":false,"id":"q34-152"},{"c":"q34","g":"사물과 배경 묘사","ko":"나는 책장에 많은 책들을 볼 수 있다.","en":"I can see many books on the bookshelves.","core":true,"id":"q34-153"},{"c":"q34","g":"사물과 배경 묘사","ko":"컴퓨터 모니터가 있다.","en":"There is a computer monitor.","core":true,"id":"q34-154"},{"c":"q34","g":"사물과 배경 묘사","ko":"화이트보드가 있다.","en":"There is a whiteboard.","core":true,"id":"q34-155"},{"c":"q34","g":"사물과 배경 묘사","ko":"노점상이 있다.","en":"There is a street vendor.","core":false,"id":"q34-156"},{"c":"q34","g":"사물과 배경 묘사","ko":"가로등이 있다.","en":"There is a streetlight.","core":false,"id":"q34-157"},{"c":"q34","g":"사물과 배경 묘사","ko":"물품들이 선반 위에 정리되어 있다.","en":"Items are arranged on the shelves.","core":false,"id":"q34-158"},{"c":"q34","g":"마무리 (전반적으로 ...)","ko":"전반적으로 그들은 바쁜 것 같다.","en":"Overall, it seems like they're busy.","core":true,"id":"q34-159"},{"c":"q34","g":"마무리 (전반적으로 ...)","ko":"전반적으로 도시에 분주한 날 같다.","en":"Overall, it seems like a busy day in a city.","core":true,"id":"q34-160"},{"c":"q34","g":"마무리 (전반적으로 ...)","ko":"전반적으로 아름다운 화창한 날씨인 것 같다.","en":"Overall, it seems like a beautiful sunny day.","core":true,"id":"q34-161"},{"c":"q34","g":"마무리 (전반적으로 ...)","ko":"전반적으로 평화로운 날 같다.","en":"Overall, it seems like a peaceful day.","core":true,"id":"q34-162"},{"c":"q57","g":"질문 답변 템플릿","ko":"네, 나는 [사진 편집 앱을 써 본] 적이 있다.","en":"Yes, I have [used a photo editing app].","core":true,"add":true,"s":"강의","tip":"Have you ever + p.p.? → Yes, I have + p.p. 질문을 그대로 따라 읽어요","id":"q57-1"},{"c":"q57","g":"질문 답변 템플릿","ko":"네, 나는 [SNS를] 주기적으로 [사용한다].","en":"Yes, I [use social media] regularly.","core":true,"add":true,"s":"강의","tip":"Do you ~? → Yes, I ~. you는 I, your는 my로만 바꿔요","id":"q57-2"},{"c":"q57","g":"질문 답변 템플릿","ko":"왜냐하면 [SNS에서] 유용한 정보를 많이 얻을 수 있기 때문이다.","en":"Because I can get a lot of useful information [on social media].","core":true,"add":true,"s":"강의","tip":"만능문장의 on the internet을 문제 단어로 바꾼 예. 온라인은 on","id":"q57-3"},{"c":"q57","g":"질문 답변 템플릿","ko":"이것은 매우 유용하고 편리하다. 그리고 정말 좋았다.","en":"It's very useful and convenient. And I really liked it.","core":true,"add":true,"s":"강의","tip":"convenient는 '컨비니언트', 가운데 -ve-에 힘","id":"q57-4"},{"c":"q57","g":"질문 답변 템플릿","ko":"아니, 요즘 학업 때문에 너무 바빠서 [SNS를] 자주 [하지] 않는다.","en":"No, I don't [use social media] regularly because I'm so busy with my schoolwork these days.","core":true,"add":true,"s":"강의","id":"q57-5"},{"c":"q57","g":"질문 답변 템플릿","ko":"그래서 그것을 할 시간이 많지 않다.","en":"So, I don't have much time for that.","core":true,"add":true,"s":"강의","id":"q57-6"},{"c":"q57","g":"질문 답변 템플릿","ko":"우리나라 사람들은 주로 [인스타그램]을 사용한다. 매우 인기 있기 때문이다.","en":"People in my country normally use [Instagram] because it's very popular.","core":true,"add":true,"s":"강의","tip":"고민하지 말고 처음 떠오른 걸 바로 말해요","id":"q57-7"},{"c":"q57","g":"질문 답변 템플릿","ko":"그래서 사람들이 그것을 좋아한다.","en":"So people like it.","core":true,"add":true,"s":"강의","id":"q57-8"},{"c":"q57","g":"질문 답변 템플릿","ko":"나는 [친구들이 사용하는지 여부]가 가장 중요하다고 생각한다.","en":"I think [whether my friends use it or not] is the most important.","core":true,"add":true,"s":"강의","tip":"Q7 보기 고르기: 보기 하나를 그대로 읽어요","id":"q57-9"},{"c":"q57","g":"질문 답변 템플릿","ko":"첫째, [친구들도 그것을 쓴다면] 친구들과 더 잘 소통할 수 있다.","en":"First, I can communicate with my friends better [if my friends use it].","core":true,"add":true,"s":"강의","tip":"if/when으로 문제와 연결하면 점수가 올라요","id":"q57-10"},{"c":"q57","g":"질문 답변 템플릿","ko":"또한, 여럿이 함께 하는 것이 더 재미있다고 생각한다.","en":"Also, I think it's more fun to do things in a group.","core":true,"add":true,"s":"강의","id":"q57-11"},{"c":"q57","g":"질문 답변 템플릿","ko":"그러므로 나는 [친구들이 사용하는지 여부]가 가장 중요하다고 생각한다.","en":"Therefore, I think [whether my friends use it or not] is the most important.","core":true,"add":true,"s":"강의","tip":"시간이 남을 때만","id":"q57-12"},{"c":"q57","g":"질문 답변 템플릿","ko":"얼마 전에 나는 [인스타그램에서 친구들과 이야기했다]. 정말 좋았다. 굉장했다.","en":"The other day, I [talked with my friends on Instagram]. I really liked it. It was awesome.","core":true,"add":true,"s":"강의","tip":"Q7에서 두 번째 이유가 막힐 때 시간을 채워요","id":"q57-13"},{"c":"q57","g":"질문 답변 템플릿","ko":"왜냐하면 나는 [친구들과 더 잘 소통할 수 있었기] 때문이다.","en":"Because I was able to [communicate with my friends better].","core":true,"add":true,"s":"강의","tip":"경험 이야기는 과거형: can → was able to","id":"q57-14"},{"c":"q57","g":"의문사 답변","ko":"나는 보통 [일주일]에 한 번 정도 그것을 한다.","en":"I do it about [once a week].","core":true,"add":true,"s":"보충","tip":"How often?","id":"q57-15"},{"c":"q57","g":"의문사 답변","ko":"마지막으로 [거기 간] 건 [지난달]이었다.","en":"The last time I [went there] was [last month].","core":true,"add":true,"s":"보충","tip":"When was the last time?","id":"q57-16"},{"c":"q57","g":"의문사 답변","ko":"나는 [친구]와 함께 갔다.","en":"I went there with [my friend].","core":true,"add":true,"s":"보충","tip":"Who did you go with?","id":"q57-17"},{"c":"q57","g":"의문사 답변","ko":"우리 집에서 [버스]로 [10분] 정도 걸린다.","en":"It's about [ten minutes] away from my house by [bus].","core":true,"add":true,"s":"보충","tip":"How far?","id":"q57-18"},{"c":"q57","g":"의문사 답변","ko":"보통 [30분] 정도 걸린다.","en":"It usually takes about [30 minutes].","core":true,"add":true,"s":"보충","tip":"How long?","id":"q57-19"},{"c":"q57","g":"의문사 답변","ko":"나는 보통 [바빠서] [밤에] 간다.","en":"I usually go there [at night] because [I'm busy during the day].","core":true,"add":true,"s":"후기","tip":"Which do you prefer? 하나 고르고 because","id":"q57-20"},{"c":"q57","g":"감정과 만족","ko":"이것은 나의 스트레스를 풀어준다. 나는 요즘 스트레스를 많이 받았다. 그래서 이것이 필요하다.","en":"It relieves my stress. I'm stressed out these days, so I need this.","core":true,"id":"q57-21"},{"c":"q57","g":"감정과 만족","ko":"이것은 나를 행복하게 해준다. 그래서 나는 걱정 근심을 잊을 수 있다.","en":"It makes me happy, so I can forget about my worries.","core":true,"id":"q57-22"},{"c":"q57","g":"감정과 만족","ko":"이것은 나를 행복하게 해주고 나는 좋은 경험을 할 수 있다.","en":"It makes me happy and I can have a great experience.","core":false,"id":"q57-23"},{"c":"q57","g":"감정과 만족","ko":"이것은 내가 가장 좋아하는 일이다.","en":"It's my favorite thing to do.","core":false,"id":"q57-24"},{"c":"q57","g":"감정과 만족","ko":"이것은 더 재밌고 즐거움을 주는 일이다. 그래서 나는 지루해지지 않는다.","en":"It's more fun and entertaining, so I don't get bored.","core":false,"id":"q57-25"},{"c":"q57","g":"감정과 만족","ko":"난 그것이 정말 좋았었다.","en":"I really liked it.","core":true,"id":"q57-26"},{"c":"q57","g":"감정과 만족","ko":"그것은 훌륭했다.","en":"It was great.","core":false,"id":"q57-27"},{"c":"q57","g":"감정과 만족","ko":"그것은 매우 근사했다.","en":"It was awesome.","core":true,"id":"q57-28"},{"c":"q57","g":"감정과 만족","ko":"나는 새로운 것을 시도해 보는 것을 좋아한다.","en":"I like to try new things.","core":true,"id":"q57-29"},{"c":"q57","g":"돈과 가격","ko":"이것은 더 싸서 돈을 절약할 수 있다.","en":"It's cheaper, so I can save money.","core":true,"id":"q57-30"},{"c":"q57","g":"돈과 가격","ko":"가격이 저렴하다.","en":"The price is reasonable.","core":true,"id":"q57-31"},{"c":"q57","g":"돈과 가격","ko":"나는 학생이라 예산이 빠듯하다.","en":"I'm a student, so my budget is tight.","core":true,"id":"q57-32"},{"c":"q57","g":"돈과 가격","ko":"나는 비싼 것을 살 여유가 없다.","en":"I can't afford to buy expensive things.","core":false,"id":"q57-33"},{"c":"q57","g":"돈과 가격","ko":"나는 그것에 지나치게 많은 돈을 쓰고 싶지 않다.","en":"I don't want to waste too much money on that.","core":false,"id":"q57-34"},{"c":"q57","g":"돈과 가격","ko":"이것은 돈낭비다.","en":"It's a waste of money.","core":false,"id":"q57-35"},{"c":"q57","g":"돈과 가격","ko":"이것은 더 싸고 더 빠르다.","en":"It's cheaper and faster.","core":false,"id":"q57-36"},{"c":"q57","g":"시간","ko":"이것은 더 빨라서 시간을 절약할 수 있다.","en":"It's faster, so I can save time.","core":true,"id":"q57-37"},{"c":"q57","g":"시간","ko":"나는 학생이다. 그래서 학업에 바쁘다.","en":"I'm a student, and I'm so busy with my schoolwork.","core":false,"id":"q57-38"},{"c":"q57","g":"시간","ko":"나는 시간이 많이 없다.","en":"I don't have much time.","core":true,"id":"q57-39"},{"c":"q57","g":"시간","ko":"나는 그것에 지나치게 많은 시간을 낭비하기 싫다.","en":"I don't want to waste too much time on that.","core":false,"id":"q57-40"},{"c":"q57","g":"시간","ko":"이것은 시간낭비다.","en":"It's a waste of time.","core":true,"id":"q57-41"},{"c":"q57","g":"시간","ko":"나는 다른 사람들을 기다리느라 시간을 낭비할 필요가 없다.","en":"I don't have to waste time waiting for other people.","core":false,"id":"q57-42"},{"c":"q57","g":"시간","ko":"나는 시간을 절약할 수 있다. 왜냐하면 나는 밖에 나가느라 시간을 낭비할 필요가 없기 때문이다.","en":"I can save time because I don't have to waste time going out.","core":true,"id":"q57-43"},{"c":"q57","g":"정보 얻기","ko":"나는 친구들에게서 많은 유용한 정보를 얻을 수 있다.","en":"I can get a lot of useful information from my friends.","core":false,"id":"q57-44"},{"c":"q57","g":"정보 얻기","ko":"나는 책에서 많은 유용한 정보를 얻을 수 있다.","en":"I can get a lot of useful information from books.","core":false,"id":"q57-45"},{"c":"q57","g":"정보 얻기","ko":"나는 인터넷에서 많은 유용한 정보를 얻을 수 있다.","en":"I can get a lot of useful information on the internet.","core":true,"id":"q57-46"},{"c":"q57","g":"정보 얻기","ko":"이것은 더 믿을 만해서 그 정보를 더 신뢰할 수 있다.","en":"It's more reliable, so I can trust the information more.","core":false,"id":"q57-47"},{"c":"q57","g":"정보 얻기","ko":"나는 정보를 언제 어디서나 내 스마트폰으로 얻을 수 있다.","en":"I can get information anytime, anywhere on my smartphone.","core":true,"id":"q57-48"},{"c":"q57","g":"사람과 관계","ko":"이것은 더 개인적이고 더 밀접한 인간관계를 쌓을 수 있다.","en":"It's more personal and builds a closer relationship.","core":false,"id":"q57-49"},{"c":"q57","g":"사람과 관계","ko":"이것은 오해를 덜 불러일으킨다.","en":"It causes less misunderstanding.","core":true,"id":"q57-50"},{"c":"q57","g":"사람과 관계","ko":"나는 같이 하는 것이 더 재밌다고 생각한다.","en":"I think it's more fun to do things in a group.","core":false,"id":"q57-51"},{"c":"q57","g":"사람과 관계","ko":"나는 새로운 사람을 만날 수 있고 친구를 만들 수 있다.","en":"I can meet new people and make friends.","core":true,"id":"q57-52"},{"c":"q57","g":"사람과 관계","ko":"나는 더 편안함을 느끼고 더 잘 집중할 수 있다.","en":"I feel more comfortable and I can focus better.","core":true,"id":"q57-53"},{"c":"q57","g":"사람과 관계","ko":"나는 집에서 더 편안함을 느낀다.","en":"I feel more comfortable at home.","core":false,"id":"q57-54"},{"c":"q57","g":"장소와 제품","ko":"이것은 좋은 시설을 가지고 있다.","en":"It has great facilities.","core":true,"id":"q57-55"},{"c":"q57","g":"장소와 제품","ko":"이곳은 인기 있는 곳이라 사람들이 좋아한다.","en":"It's a well-liked place, so people love it.","core":true,"id":"q57-56"},{"c":"q57","g":"장소와 제품","ko":"이것은 인기 있는 아이템인지라 사람들이 좋아할 것이다.","en":"It's a popular item, so people will love it.","core":false,"id":"q57-57"},{"c":"q57","g":"장소와 제품","ko":"그것들은 너무 오래되어서 새로운 것이 있으면 더 나을 것 같다.","en":"They are too old, so I think it's good to have new ones.","core":false,"id":"q57-58"},{"c":"q57","g":"장소와 제품","ko":"그것들은 너무 구식이어서 새로운 것이 있으면 더 좋을 것 같다.","en":"They are too outdated, so I think it's good to have new ones.","core":false,"id":"q57-59"},{"c":"q57","g":"장소와 제품","ko":"여기에 더 많은 가게가 있다면 더 편리할 것이다.","en":"If there were more stores here, it would be more convenient.","core":false,"id":"q57-60"},{"c":"q57","g":"장소와 제품","ko":"그들은 행복한 분위기와 기분 좋은 경험을 제공한다.","en":"They provide a happy environment and a pleasant experience.","core":false,"id":"q57-61"},{"c":"q57","g":"장소와 제품","ko":"이것은 더 믿을 만해서 나는 그 제품을 신뢰할 수 있다.","en":"It's more reliable, and I can trust the product.","core":false,"id":"q57-62"},{"c":"q57","g":"장소와 제품","ko":"이것은 좋은 선물이다.","en":"It's a good gift.","core":false,"id":"q57-63"},{"c":"q57","g":"장소와 제품","ko":"이것은 의미가 깊다.","en":"It has sentimental value.","core":false,"id":"q57-64"},{"c":"q57","g":"필요성과 유용성","ko":"이것은 나에게 매우 필요한 것이다.","en":"It's very necessary for me.","core":false,"id":"q57-65"},{"c":"q57","g":"필요성과 유용성","ko":"나는 그것을 자주 이용한다.","en":"I frequently use it.","core":true,"id":"q57-66"},{"c":"q57","g":"필요성과 유용성","ko":"이것은 내 일상의 일부다.","en":"It's part of my routine.","core":true,"id":"q57-67"},{"c":"q57","g":"필요성과 유용성","ko":"이것은 내 습관이다.","en":"It's my habit.","core":false,"id":"q57-68"},{"c":"q57","g":"필요성과 유용성","ko":"이것은 매우 유용하고 편리하다.","en":"It's very useful and convenient.","core":true,"id":"q57-69"},{"c":"q57","g":"필요성과 유용성","ko":"이것은 나에게 매우 도움이 된다.","en":"It's very helpful for me.","core":false,"id":"q57-70"},{"c":"q810","g":"정보 안내 템플릿","ko":"[세미나]는 [6월 20일]에 [힐튼 호텔]에서 열릴 것이다.","en":"[The seminar] will be held on [June 20th] at [Hilton Hotel].","core":true,"add":true,"s":"강의","tip":"날짜·요일은 on, 시각·특정 장소는 at","id":"q810-1"},{"c":"q810","g":"정보 안내 템플릿","ko":"그것은 [오전 9시]에 시작할 것이다.","en":"It will start at [9 a.m.]","core":true,"add":true,"s":"강의","tip":"will be start, it is start는 틀린 문장","id":"q810-2"},{"c":"q810","g":"정보 안내 템플릿","ko":"아니요, 사실 [등록과 커피 세션]은 [오전 9시]에 시작할 것이다.","en":"No, actually [the registration and coffee session] will start at [9 a.m.]","core":true,"add":true,"s":"강의","tip":"Q9 정보가 틀렸을 때 No, actually로 바로잡아요","id":"q810-3"},{"c":"q810","g":"정보 안내 템플릿","ko":"두 개의 세션이 있다.","en":"There are two sessions.","core":true,"add":true,"s":"강의","tip":"Q10 첫 문장: 개수부터 말해요","id":"q810-4"},{"c":"q810","g":"정보 안내 템플릿","ko":"첫째, [오후 1시]에 [레이 킹스턴]이 진행하는 [소셜 미디어 마케팅]에 관한 워크숍이 있다.","en":"First, at [1 p.m.], there is a workshop on [social media marketing] by [Ray Kingston].","core":true,"add":true,"s":"강의","tip":"주제는 on, 진행자는 by","id":"q810-5"},{"c":"q810","g":"정보 안내 템플릿","ko":"다음으로, [오후 2시 30분]에 [마케팅을 통해 스포츠 팬에게 어필하기]에 관한 토론이 있다.","en":"Next, at [2:30 p.m.], there is a discussion on [appealing to sports fans through marketing].","core":true,"add":true,"s":"강의","id":"q810-6"},{"c":"q810","g":"정보 안내 템플릿","ko":"당신은 [오전 10시]에 [아메리칸 에어 105편]을 타고 [샌프란시스코]에서 출발할 것이다.","en":"You will depart from [San Francisco] at [10 a.m.] on [American Air 105].","core":true,"add":true,"s":"강의","tip":"개인 일정표는 주어를 You로","id":"q810-7"},{"c":"q810","g":"정보 안내 템플릿","ko":"당신은 [연설을] 할 것이다.","en":"You will give [a speech].","core":true,"add":true,"s":"강의","tip":"speech·lecture는 do가 아니라 give","id":"q810-8"},{"c":"q810","g":"정보 안내 템플릿","ko":"아니요, 사실 [화요일 오후 2시]에 [제인 화이트]와의 회의가 있기로 되어 있었지만 취소되었다.","en":"No, actually there was supposed to be a meeting with [Jane White] at [2 p.m.] on [Tuesday], but it has been canceled.","core":true,"add":true,"s":"강의","tip":"함께 하는 사람은 with","id":"q810-9"},{"c":"q810","g":"정보 안내 템플릿","ko":"첫째, [오전 9시]에 [국제 마케팅 엑스포]가 있다.","en":"First, at [9 a.m.], there is [an international marketing expo].","core":true,"add":true,"s":"강의","tip":"morning/afternoon은 낮 12시 기준","id":"q810-10"},{"c":"q810","g":"정보 안내 템플릿","ko":"그녀는 [2010년]에 [밴쿠버 예술학교]에서 [디자인] 석사 학위를 받았다.","en":"She got a master's degree in [design] from [Vancouver Art Institute] in [2010].","core":true,"add":true,"s":"강의","tip":"전공 in, 학교 from, 연도 in. latest degree = 가장 최근 학위","id":"q810-11"},{"c":"q810","g":"정보 안내 템플릿","ko":"[2017년]부터 지금까지 그녀는 [토론토 패션 매거진]에서 [편집장]으로 일해 왔다.","en":"From [2017] up to now, she has worked at [Toronto Fashion Magazine] as [a chief editor].","core":true,"add":true,"s":"강의","tip":"지금도 일하면 has worked. worked는 틀려요","id":"q810-12"},{"c":"q810","g":"정보 안내 템플릿","ko":"그 면접은 [5월 5일]에 [3C 회의실]에서 열릴 것이다.","en":"It will be held on [May 5th] in [Conference Room 3C].","core":true,"add":true,"s":"강의","tip":"방·도시·나라는 in","id":"q810-13"},{"c":"q810","g":"정보 안내 템플릿","ko":"첫째, [오전 9시 30분]부터 [10시]까지 [B 시스템즈]에서 온 [줄리아 콜린스]와의 면접이 있다.","en":"First, from [9:30] to [10 a.m.], there is an interview with [Julia Collins] from [B Systems].","core":true,"add":true,"s":"강의","tip":"기간은 from A to B, 출신 회사는 from","id":"q810-14"},{"c":"q810","g":"정보 안내 템플릿","ko":"한 수업당 [30달러]이다.","en":"It's [$30] per class.","core":true,"add":true,"s":"강의","tip":"돈 이야기는 It's로 시작","id":"q810-15"},{"c":"q810","g":"정보 안내 템플릿","ko":"회원이면 무료이다. 하지만 회원이 아니면 한 수업당 [30달러]이다.","en":"If you are a member, it's free. But if you are not a member, it's [$30] per class.","core":true,"add":true,"s":"강의","tip":"조건 붙은 요금은 Q9에 자주 나와요","id":"q810-16"},{"c":"q810","g":"정보 안내 템플릿","ko":"아니요, 사실 [데이비드 윌리엄스]가 [프로 볼링 수업]을 가르칠 것이다.","en":"No, actually [David Williams] will teach [the professional bowling course].","core":true,"add":true,"s":"강의","id":"q810-17"},{"c":"q810","g":"정보 안내 템플릿","ko":"[월요일마다] [오전 9시]부터 [10시]까지 [프로 볼링] 수업이 있다.","en":"From [9 a.m.] to [10 a.m.] on [Mondays], there is [a professional bowling class].","core":true,"add":true,"s":"강의","tip":"매주 반복되는 요일은 on Mondays처럼 s","id":"q810-18"},{"c":"q810","g":"행사와 일정 안내","ko":"컨퍼런스가 6월 20일 힐튼 호텔에서 개최될 예정입니다.","en":"The conference will be held on June 20th at Hilton Hotel.","core":true,"id":"q810-19"},{"c":"q810","g":"행사와 일정 안내","ko":"미팅은 오전 9시에 시작할 것입니다.","en":"The meeting will start at 9 a.m.","core":true,"id":"q810-20"},{"c":"q810","g":"행사와 일정 안내","ko":"세미나는 오후 5시에 끝날 것입니다.","en":"The seminar will finish at 5 p.m.","core":true,"id":"q810-21"},{"c":"q810","g":"행사와 일정 안내","ko":"아니요. 유감스럽게도 잘못 알고 계십니다. 사실 등록 및 커피 타임은 오전 9시에 시작될 것입니다.","en":"No, I'm afraid that you have the wrong information. Actually, the registration and coffee session will start at 9 a.m.","core":true,"id":"q810-22"},{"c":"q810","g":"행사와 일정 안내","ko":"두 개의 세션이 있습니다. 먼저 오후 1시에는 레이 킹스턴의 소셜 미디어 마케팅에 관한 워크숍이 있습니다. 다음으로는 오후 2시 30분에 마케팅을 통해 스포츠 팬들에게 어필하는 것에 대한 케빈 데이먼트의 토론이 있습니다.","en":"There are two sessions. First, at 1 p.m. there is a workshop on social media marketing by Ray Kingston. Next, at 2:30 p.m. there is a discussion on appealing to sports fans through marketing by Kevin Damont.","core":false,"id":"q810-23"},{"c":"q810","g":"여행 일정","ko":"당신은 [출발지]에서 출발할 것입니다.","en":"You will depart from [출발지].","core":true,"id":"q810-24"},{"c":"q810","g":"여행 일정","ko":"당신은 [도착지]에 도착할 것입니다.","en":"You will arrive in [도착지].","core":true,"id":"q810-25"},{"c":"q810","g":"여행 일정","ko":"당신은 로스앤젤레스에 오후 3시에 도착할 것입니다.","en":"You will arrive in Los Angeles at 3 p.m.","core":false,"id":"q810-26"},{"c":"q810","g":"여행 일정","ko":"당신은 [교통편]을 탈 것입니다.","en":"You will take [교통편].","core":true,"id":"q810-27"},{"c":"q810","g":"여행 일정","ko":"당신은 대한항공 105기를 탈 것입니다.","en":"You will take Korean Air 105.","core":false,"id":"q810-28"},{"c":"q810","g":"여행 일정","ko":"당신은 [숙소]에 머무를 것입니다.","en":"You will stay at [숙소].","core":true,"id":"q810-29"},{"c":"q810","g":"여행 일정","ko":"당신은 글렌 호텔에 머무를 것입니다.","en":"You will stay at Glen Hotel.","core":false,"id":"q810-30"},{"c":"q810","g":"여행 일정","ko":"당신은 점심 식사를 할 것입니다.","en":"You will have lunch.","core":false,"id":"q810-31"},{"c":"q810","g":"여행 일정","ko":"당신은 저녁 식사를 할 것입니다.","en":"You will have dinner.","core":false,"id":"q810-32"},{"c":"q810","g":"여행 일정","ko":"당신은 회의를 할 것입니다.","en":"You will have a meeting.","core":false,"id":"q810-33"},{"c":"q810","g":"여행 일정","ko":"당신은 프레젠테이션을 할 것입니다.","en":"You will give a presentation.","core":false,"id":"q810-34"},{"c":"q810","g":"일정 취소와 변경","ko":"[일정]이 있기로 되어 있었으나 취소되었다.","en":"There was supposed to be [일정], but it has been canceled.","core":true,"id":"q810-35"},{"c":"q810","g":"일정 취소와 변경","ko":"회의가 있기로 되어 있었으나 취소되었다.","en":"There was supposed to be a meeting, but it has been canceled.","core":false,"id":"q810-36"},{"c":"q810","g":"일정 취소와 변경","ko":"[일정]이 있기로 되어 있었으나 [날짜]로 일정이 변경되었다.","en":"There was supposed to be [일정], but it has been rescheduled to [날짜].","core":true,"id":"q810-37"},{"c":"q810","g":"일정 취소와 변경","ko":"원래는 화요일 2시에 제인 화이트 씨와의 회의가 있기로 되어 있었으나 금요일로 스케줄이 변경되었습니다.","en":"There was supposed to be a meeting with Jane White at 2 p.m. on Tuesday, but it has been rescheduled to Friday.","core":true,"id":"q810-38"},{"c":"q810","g":"인물 소개 (학력, 경력, 능력)","ko":"그녀는 [학교]에서 [연도]에 [전공] 전공으로 석사 학위를 취득했습니다.","en":"She got a master's degree in [전공] from [학교] in [연도].","core":true,"id":"q810-39"},{"c":"q810","g":"인물 소개 (학력, 경력, 능력)","ko":"그녀는 밴쿠버 예술대학교에서 2010년에 디자인 전공으로 석사 학위를 취득했습니다.","en":"She got a master's degree in design from Vancouver Art University in 2010.","core":false,"id":"q810-40"},{"c":"q810","g":"인물 소개 (학력, 경력, 능력)","ko":"[시작]부터 [종료]까지 그는/그녀는 [회사명]에서 [직책]으로 일했습니다.","en":"From [시작] to [종료], he or she worked at [회사명] as [직책].","core":true,"id":"q810-41"},{"c":"q810","g":"인물 소개 (학력, 경력, 능력)","ko":"첫째로 2015년부터 2017년까지 그녀는 재스퍼 패션 잡지사에서 이사로 일했습니다.","en":"First, from 2015 to 2017, she worked at Jasper Fashion Magazine as a director.","core":false,"id":"q810-42"},{"c":"q810","g":"인물 소개 (학력, 경력, 능력)","ko":"[시작]부터 지금까지 그는/그녀는 [회사명]에서 [직책]으로 일해오고 있습니다.","en":"From [시작] up to now, he or she has worked at [회사명] as [직책].","core":true,"id":"q810-43"},{"c":"q810","g":"인물 소개 (학력, 경력, 능력)","ko":"다음으로는 2017년부터 지금까지 그녀는 토론토 패션 잡지사에서 편집장으로 일해오고 있습니다.","en":"Next, from 2017 up to now, she has worked at Toronto Fashion Magazine as a chief editor.","core":false,"id":"q810-44"},{"c":"q810","g":"인물 소개 (학력, 경력, 능력)","ko":"그는/그녀는 [언어명]을 유창하게 구사합니다.","en":"He or she is fluent in [언어명].","core":true,"id":"q810-45"},{"c":"q810","g":"인물 소개 (학력, 경력, 능력)","ko":"그는 스페인어를 유창하게 구사합니다.","en":"He is fluent in Spanish.","core":false,"id":"q810-46"},{"c":"q810","g":"인물 소개 (학력, 경력, 능력)","ko":"그녀는 자격증이 있습니다.","en":"She has a certificate.","core":false,"id":"q810-47"},{"c":"q810","g":"인물 소개 (학력, 경력, 능력)","ko":"그는/그녀는 [분야] 관련 경험이 있습니다.","en":"He or she has experience in [분야].","core":true,"id":"q810-48"},{"c":"q810","g":"인물 소개 (학력, 경력, 능력)","ko":"그는 교육 관련 경험이 있습니다.","en":"He has experience in education.","core":false,"id":"q810-49"},{"c":"q810","g":"인물 소개 (학력, 경력, 능력)","ko":"그녀는 5년의 업무 경력이 있습니다.","en":"She has five years of experience.","core":false,"id":"q810-50"},{"c":"q810","g":"인물 소개 (학력, 경력, 능력)","ko":"그는/그녀는 [직책]에 지원하고 있습니다.","en":"He or she is applying for the [직책] position.","core":true,"id":"q810-51"},{"c":"q810","g":"인물 소개 (학력, 경력, 능력)","ko":"그는 편집장직에 지원하고 있습니다.","en":"He is applying for the editor position.","core":false,"id":"q810-52"},{"c":"q810","g":"면접","ko":"당신은 [사람]과 [시간]에 면접을 볼 것입니다.","en":"You will interview [사람] at [시간].","core":true,"id":"q810-53"},{"c":"q810","g":"면접","ko":"당신은 제시카 앤더슨과 오전 9시에 면접을 볼 것입니다.","en":"You will interview Jessica Anderson at 9 a.m.","core":false,"id":"q810-54"},{"c":"q810","g":"면접","ko":"[직책]에 지원하는 [회사명]의 [사람]과의 면접이 있습니다.","en":"There is an interview with [사람] from [회사명] who is applying for [직책].","core":true,"id":"q810-55"},{"c":"q810","g":"면접","ko":"마케팅 부장직에 지원하는 에코전자의 존 화이트 씨와의 면접이 있습니다.","en":"There is an interview with John White from EcoTronics who is applying for the marketing director position.","core":false,"id":"q810-56"},{"c":"q810","g":"강좌 안내","ko":"당신은 [강좌] 수강료로 [금액]을 지불해야 합니다.","en":"You have to pay [$] for [강좌].","core":true,"id":"q810-57"},{"c":"q810","g":"강좌 안내","ko":"오일 페인팅 수업은 20달러입니다.","en":"You have to pay $20 for the oil painting class.","core":false,"id":"q810-58"},{"c":"q810","g":"강좌 안내","ko":"20달러입니다.","en":"It's $20.","core":false,"id":"q810-59"},{"c":"q810","g":"강좌 안내","ko":"당신은 [등록일]까지 등록하셔야 합니다.","en":"You should register by [등록일].","core":true,"id":"q810-60"},{"c":"q810","g":"강좌 안내","ko":"1월 3일까지 등록하셔야 합니다.","en":"You should register by January 3rd.","core":false,"id":"q810-61"},{"c":"q810","g":"강좌 안내","ko":"당신이 회원이라면 무료이지만 비회원이라면 20달러를 지불하셔야 합니다.","en":"If you are a member, it's free. If you are not a member, it's $20.","core":true,"id":"q810-62"},{"c":"q810","g":"강좌 안내","ko":"무료입니다.","en":"It's free.","core":true,"id":"q810-63"},{"c":"q810","g":"강좌 안내","ko":"이것은 초급자들을 위한 강좌입니다.","en":"It's for beginners.","core":true,"id":"q810-64"},{"c":"q810","g":"강좌 안내","ko":"이것은 중급자들을 위한 강좌입니다.","en":"It's for intermediate students.","core":false,"id":"q810-65"},{"c":"q810","g":"강좌 안내","ko":"이것은 고급자들을 위한 강좌입니다.","en":"It's for advanced students.","core":false,"id":"q810-66"},{"c":"q810","g":"강좌 안내","ko":"[강좌명] 수업이 있습니다.","en":"There is a [강좌명] class.","core":false,"id":"q810-67"},{"c":"q810","g":"강좌 안내","ko":"요리 수업이 있습니다.","en":"There's a cooking class.","core":false,"id":"q810-68"},{"c":"q810","g":"강좌 안내","ko":"[강사]가 [과목명] 수업을 지도할 것입니다.","en":"[강사] will teach the [과목명] class.","core":false,"id":"q810-69"},{"c":"q810","g":"강좌 안내","ko":"킴 강사가 요리 수업을 지도할 것입니다.","en":"Kim will teach the cooking class.","core":false,"id":"q810-70"},{"c":"q810","g":"강좌 안내","ko":"[주제]에 관한 수업이 있습니다.","en":"There is a class on [주제].","core":false,"id":"q810-71"},{"c":"q810","g":"강좌 안내","ko":"프랑스 예술사에 관련된 수업이 있습니다.","en":"There's a class on French art history.","core":false,"id":"q810-72"},{"c":"q810","g":"강좌 안내","ko":"[강사]가 [주제]에 관한 수업을 지도할 예정입니다.","en":"[강사] will teach a class on [주제].","core":true,"id":"q810-73"},{"c":"q810","g":"강좌 안내","ko":"제니퍼 휴스턴 강사가 프랑스 예술사에 관한 수업을 지도할 예정입니다.","en":"Jennifer Houston will teach a class on French art history.","core":false,"id":"q810-74"},{"c":"q11","g":"60초 답변 템플릿","ko":"나는 그 의견에 동의한다.","en":"I agree with the statement.","core":true,"add":true,"s":"강의","tip":"결론부터 말해요","id":"q11-1"},{"c":"q11","g":"60초 답변 템플릿","ko":"나는 그 의견에 동의하지 않는다.","en":"I disagree with the statement.","core":true,"add":true,"s":"강의","id":"q11-2"},{"c":"q11","g":"60초 답변 템플릿","ko":"내가 왜 이렇게 생각하는지 설명하겠다.","en":"Let me explain why I think this way.","core":true,"add":true,"s":"강의","tip":"이유가 아직 안 떠올랐을 때 시간을 벌어 줘요","id":"q11-3"},{"c":"q11","g":"60초 답변 템플릿","ko":"무엇보다도, [좋아하는 일을 하면] 사람들은 더 효율적이고 생산적으로 일할 수 있다.","en":"Most of all, people can work more efficiently and productively [if they have a job that they like].","core":true,"add":true,"s":"강의","tip":"만능문장 주어를 문제에 맞게 바꾸고(employees → people) if로 문제와 연결","id":"q11-4"},{"c":"q11","g":"60초 답변 템플릿","ko":"내 경험상, 나는 [회사에서] 일한 적이 있다.","en":"From my experience, I used to work [at a company].","core":true,"add":true,"s":"강의","tip":"학교 주제면 When I was a university student처럼","id":"q11-5"},{"c":"q11","g":"60초 답변 템플릿","ko":"나는 그 일이 정말 좋았다.","en":"I really liked the job.","core":true,"add":true,"s":"강의","id":"q11-6"},{"c":"q11","g":"60초 답변 템플릿","ko":"그것은 나에게 매우 도움이 되었다. [더 효율적이고 생산적으로 일할 수 있었기] 때문이다.","en":"For me, it was very helpful because I was able to [work more efficiently and productively].","core":true,"add":true,"s":"강의","tip":"경험은 주어 I, 과거형","id":"q11-7"},{"c":"q11","g":"60초 답변 템플릿","ko":"그리고 나는 [돈을 더 벌] 수 있었다.","en":"And I was able to [earn more money].","core":true,"add":true,"s":"강의","tip":"문제의 단어를 가져와 연결해요","id":"q11-8"},{"c":"q11","g":"60초 답변 템플릿","ko":"게다가, [좋아하는 일을 하면 사람들은 일에 더 만족하고 돈도 더 벌 수 있다].","en":"On top of that, [people can be more satisfied with their jobs and earn more money if they have a job that they like].","core":true,"add":true,"s":"강의","tip":"on the top of that이 아니라 on top of that","id":"q11-9"},{"c":"q11","g":"60초 답변 템플릿","ko":"최근 뉴스 보도에 따르면, 한국의 [직장인] 대다수가 [좋아하는 일을 하는 것이 매우 이롭다]고 말했다.","en":"According to a recent news report, the majority of [office workers] in Korea said that [having a job that you like is very beneficial].","core":true,"add":true,"s":"강의","tip":"사람만 주제에 맞게: successful CEOs, education experts, office workers","id":"q11-10"},{"c":"q11","g":"60초 답변 템플릿","ko":"그러므로 나는 그 의견에 동의한다.","en":"Therefore, I agree with the statement.","core":true,"add":true,"s":"강의","tip":"시간이 남을 때만","id":"q11-11"},{"c":"q11","g":"배움과 경험","ko":"그들은 새로운 것을 배울 수 있다.","en":"They can learn new things.","core":true,"id":"q11-12"},{"c":"q11","g":"배움과 경험","ko":"그들은 새로운 사람을 만나고 인맥을 넓힐 수 있다.","en":"They can meet new people and expand their network.","core":true,"id":"q11-13"},{"c":"q11","g":"배움과 경험","ko":"그들은 많은 것들을 경험하고 그들의 견문을 넓힐 수 있다.","en":"They can have a lot of experience and broaden their perspective.","core":true,"id":"q11-14"},{"c":"q11","g":"배움과 경험","ko":"그들은 많은 경험을 가지고 있다.","en":"They have a lot of experience.","core":false,"id":"q11-15"},{"c":"q11","g":"배움과 경험","ko":"그는 그의 창의성 덕택에 다양한 상황을 잘 처리할 수 있다.","en":"He is able to handle a variety of situations due to his creativity.","core":false,"id":"q11-16"},{"c":"q11","g":"학업과 성숙도 (부정적 측면)","ko":"그들은 좋은 결정을 하지 못하는데 왜냐면 충분히 성숙하지 않았기 때문이다.","en":"They can't make good decisions because they're not mature enough.","core":true,"id":"q11-17"},{"c":"q11","g":"학업과 성숙도 (부정적 측면)","ko":"그들은 집중을 못하게 될 것이다.","en":"They will be distracted.","core":false,"id":"q11-18"},{"c":"q11","g":"학업과 성숙도 (부정적 측면)","ko":"그들은 그들의 학업에 집중할 수가 없다.","en":"They can't focus on their studies.","core":true,"id":"q11-19"},{"c":"q11","g":"학업과 성숙도 (부정적 측면)","ko":"그들은 학교에서 좋은 성적을 받을 수 없다.","en":"They can't get good grades at school.","core":false,"id":"q11-20"},{"c":"q11","g":"학업과 성숙도 (부정적 측면)","ko":"그들은 학업에서 뒤처질 것이다.","en":"They will fall behind in class.","core":false,"id":"q11-21"},{"c":"q11","g":"학업과 성숙도 (부정적 측면)","ko":"그들은 효율적으로 일할 수 없다.","en":"They can't work efficiently.","core":false,"id":"q11-22"},{"c":"q11","g":"돈과 비용","ko":"그들은 돈을 절약할 수 있다.","en":"They can save money.","core":true,"id":"q11-23"},{"c":"q11","g":"돈과 비용","ko":"생활비가 너무 비싸다.","en":"The cost of living is too high.","core":false,"id":"q11-24"},{"c":"q11","g":"돈과 비용","ko":"그들은 먹고 살기가 어렵다.","en":"They can't make a living.","core":false,"id":"q11-25"},{"c":"q11","g":"돈과 비용","ko":"나는 높은 급여를 받을 수 있다.","en":"I can get a high salary.","core":false,"id":"q11-26"},{"c":"q11","g":"돈과 비용","ko":"[명사]의 가격이 너무 비싸다.","en":"The cost of [명사] is too high.","core":false,"id":"q11-27"},{"c":"q11","g":"돈과 비용","ko":"이것은 너무 지나치게 비싸다.","en":"It's too expensive.","core":true,"id":"q11-28"},{"c":"q11","g":"돈과 비용","ko":"그것은 좋은 투자인데 왜냐하면 삶을 더 낫게 만들어 준다.","en":"That's a good investment because it makes lives better.","core":false,"id":"q11-29"},{"c":"q11","g":"집중, 자유, 편안함","ko":"그들은 더 잘 집중할 수 있다.","en":"They can focus better.","core":true,"id":"q11-30"},{"c":"q11","g":"집중, 자유, 편안함","ko":"그들은 다른 사람들에게 방해받지 않을 것이다.","en":"They will not be distracted by others.","core":true,"id":"q11-31"},{"c":"q11","g":"집중, 자유, 편안함","ko":"그들은 그들의 스케줄을 정할 수 있다.","en":"They can set their own schedule.","core":true,"id":"q11-32"},{"c":"q11","g":"집중, 자유, 편안함","ko":"그들은 더 자유로울 수 있다.","en":"They can have more freedom.","core":false,"id":"q11-33"},{"c":"q11","g":"집중, 자유, 편안함","ko":"그들은 더 편안함을 느낀다.","en":"They feel more comfortable.","core":true,"id":"q11-34"},{"c":"q11","g":"집중, 자유, 편안함","ko":"이것은 재밌고 즐거움을 준다.","en":"It's fun and entertaining.","core":false,"id":"q11-35"},{"c":"q11","g":"정보와 인터넷","ko":"그들은 정보를 얻고 다른 사람과 공유할 수 있다.","en":"They can get information and share it with other people.","core":false,"id":"q11-36"},{"c":"q11","g":"정보와 인터넷","ko":"그들은 인터넷에서 많은 유용한 정보를 얻을 수 있다.","en":"They can get a lot of useful information on the internet.","core":true,"id":"q11-37"},{"c":"q11","g":"정보와 인터넷","ko":"그들은 언제 어디서나 그들의 스마트폰으로 [동사]할 수 있다.","en":"They can [동사] anytime, anywhere on their smartphones.","core":false,"id":"q11-38"},{"c":"q11","g":"정보와 인터넷","ko":"이것은 더 빠르고 편리하다.","en":"It's faster and more convenient.","core":true,"id":"q11-39"},{"c":"q11","g":"정보와 인터넷","ko":"인터넷에는 많은 부정확한 정보가 있어서 믿을 만하지가 않다.","en":"There is a lot of inaccurate information on the internet, so it's not reliable.","core":true,"id":"q11-40"},{"c":"q11","g":"정보와 인터넷","ko":"이것은 학생들에게 매우 집중을 분산시키는 것이라 학생들은 공부에 집중할 수 없다.","en":"It is very distracting for students, so students can't focus on their studies.","core":false,"id":"q11-41"},{"c":"q11","g":"소통과 대면","ko":"나는 즉각적인 답변을 받을 수 있다.","en":"I can get responses right away.","core":true,"id":"q11-42"},{"c":"q11","g":"소통과 대면","ko":"나는 말하는 사람의 감정을 더 정확하게 이해할 수 있다.","en":"I can understand the feelings of the speaker more accurately.","core":true,"id":"q11-43"},{"c":"q11","g":"소통과 대면","ko":"그들은 좋은 분위기를 만들 수 있다.","en":"They can make a friendly atmosphere.","core":false,"id":"q11-44"},{"c":"q11","g":"소통과 대면","ko":"그들은 다른 사람들과 더 잘 소통할 수 있다.","en":"They can communicate with others better.","core":true,"id":"q11-45"},{"c":"q11","g":"소통과 대면","ko":"그들은 좋은 팀 플레이어가 될 수 있고 다른 사람들과 좋은 관계를 맺을 수 있다.","en":"They can be good team players and have good relationships with others.","core":true,"id":"q11-46"},{"c":"q11","g":"소통과 대면","ko":"그들은 좋은 평판을 가질 수 있다.","en":"They can have a good reputation.","core":false,"id":"q11-47"},{"c":"q11","g":"소통과 대면","ko":"그들은 매우 영향력 있을 수 있다.","en":"They can be very influential.","core":false,"id":"q11-48"},{"c":"q11","g":"소통과 대면","ko":"그들은 다른 사람들을 동기 부여해 줄 수 있다.","en":"They can motivate others.","core":false,"id":"q11-49"},{"c":"q11","g":"소통과 대면","ko":"더 가족처럼 느껴진다.","en":"It feels more like a family.","core":false,"id":"q11-50"},{"c":"q11","g":"직장과 비즈니스","ko":"모든 것이 급변하고 경쟁이 치열하다.","en":"Everything is always changing and there is a lot of competition.","core":false,"id":"q11-51"},{"c":"q11","g":"직장과 비즈니스","ko":"그들은 많은 도전과 어려움을 직면하게 된다.","en":"They face a lot of challenges and difficulties.","core":false,"id":"q11-52"},{"c":"q11","g":"직장과 비즈니스","ko":"직원들은 더 효율적이고 생산적으로 일할 수 있다.","en":"Employees can work more efficiently and productively.","core":true,"id":"q11-53"},{"c":"q11","g":"직장과 비즈니스","ko":"직원들은 그들의 직장에 더 만족할 수 있다.","en":"Employees can be more satisfied with their jobs.","core":true,"id":"q11-54"},{"c":"q11","g":"직장과 비즈니스","ko":"이것은 더 나은 업무 환경을 만든다.","en":"It can make a better work environment.","core":false,"id":"q11-55"},{"c":"q11","g":"직장과 비즈니스","ko":"그들은 프로페셔널하지 않게 보일 수 있다.","en":"They might appear less professional.","core":false,"id":"q11-56"},{"c":"q11","g":"직장과 비즈니스","ko":"고객들은 만족할 것이고 고객 충성도를 유지할 것이다.","en":"Customers will feel satisfied and remain loyal.","core":false,"id":"q11-57"},{"c":"q11","g":"직장과 비즈니스","ko":"이것은 더 많은 고객을 끌어들일 것이다.","en":"It will attract more customers.","core":true,"id":"q11-58"},{"c":"q11","g":"직장과 비즈니스","ko":"업체가 더 성공할 것이다.","en":"The business will be more successful.","core":false,"id":"q11-59"},{"c":"q11","g":"직장과 비즈니스","ko":"사람들은 SNS를 자주 이용해서 더 효과적일 것이다.","en":"People frequently use social media, so it will be very effective.","core":false,"id":"q11-60"},{"c":"q11","g":"건강과 환경","ko":"이것은 그들의 스트레스를 풀어주고 그들은 쉴 수 있다.","en":"It relieves their stress and they can relax.","core":true,"id":"q11-61"},{"c":"q11","g":"건강과 환경","ko":"이것은 그들의 신체 건강에 좋다.","en":"It is good for their physical health.","core":true,"id":"q11-62"},{"c":"q11","g":"건강과 환경","ko":"이것은 그들의 정신 건강에 좋다.","en":"It is good for their mental health.","core":true,"id":"q11-63"},{"c":"q11","g":"건강과 환경","ko":"이것은 그들의 건강에 좋지 않다.","en":"It's not good for their health.","core":false,"id":"q11-64"},{"c":"q11","g":"건강과 환경","ko":"이것은 환경에 좋다.","en":"It's good for the environment.","core":true,"id":"q11-65"},{"c":"q11","g":"건강과 환경","ko":"환경 오염은 요즘 매우 심각한 문제다.","en":"Pollution is a serious issue these days.","core":false,"id":"q11-66"},{"c":"q11","g":"건강과 환경","ko":"이것은 더 깨끗한 환경을 만들 수 있다.","en":"It can make a cleaner environment.","core":false,"id":"q11-67"},{"c":"q11","g":"건강과 환경","ko":"우리는 환경을 보호할 수 있을 것이다.","en":"We will be able to protect the environment.","core":false,"id":"q11-68"}];
+const CATS = {
+  q34:  { name: "사진 묘사", q: "Q3–4" },
+  q57:  { name: "질문 답변", q: "Q5–7" },
+  q810: { name: "정보 안내", q: "Q8–10" },
+  q11:  { name: "의견 제시", q: "Q11" }
+};
+DATA.forEach(d => { if (!d.core) d.core = false; });
+
+/* ---------- storage (this browser only) ---------- */
+function load(key, fb) { try { const v = JSON.parse(localStorage.getItem(key)); return v == null ? fb : v; } catch (e) { return fb; } }
+function store(key, v) { try { localStorage.setItem(key, JSON.stringify(v)); } catch (e) {} }
+const known = new Set(load("toeic-im1-known", []));
+const planDone = new Set(load("toeic-im1-plan", []));
+const saveKnown = () => store("toeic-im1-known", [...known]);
+
+/* ---------- helpers ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[ch]));
+const fmtEn = s => esc(s).replace(/\[([^\]]+)\]/g, '<mark class="slot">$1</mark>');
+const fmtKo = s => esc(s).replace(/\[([^\]]+)\]/g, "<b>$1</b>");
+const plain = s => s.replace(/[\[\]]/g, "");
+const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const byId = id => DATA.find(d => d.id === id);
+const SPEAK_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>';
+const CHECK_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>';
+const srcBadge = d => d.s ? `<span class="src">${d.s === "강의" ? "강의 템플릿" : d.s === "후기" ? "IH 후기" : "보충"}</span>` : "";
+
+const canSpeak = "speechSynthesis" in window;
+let enVoice = null;
+function pickVoice() { try { const v = speechSynthesis.getVoices(); enVoice = v.find(x => x.lang === "en-US") || v.find(x => x.lang && x.lang.startsWith("en")) || null; } catch (e) {} }
+if (canSpeak) { pickVoice(); try { speechSynthesis.onvoiceschanged = pickVoice; } catch (e) {} }
+function speak(text) {
+  if (!canSpeak) return;
+  try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(plain(text)); u.lang = "en-US"; u.rate = .9; if (enVoice) u.voice = enVoice; speechSynthesis.speak(u); } catch (e) {}
+}
+const speakBtn = id => canSpeak ? `<button class="icon-btn" data-speak="${id}" aria-label="발음 듣기" title="발음 듣기">${SPEAK_ICON}</button>` : "";
+
+/* ---------- state ---------- */
+const state = { view: "plan", part: "all", level: "core", onlyLeft: false, mode: "card", order: [], pos: 0, revealed: false, masked: false, peek: new Set(), test: null };
+const inLevel = d => state.level === "all" || (state.level === "core" ? d.core : d.add);
+function filtered() { return DATA.filter(d => (state.part === "all" || d.c === state.part) && inLevel(d) && (!state.onlyLeft || !known.has(d.id))); }
+function rebuildOrder(shuffled) { state.order = filtered().map(d => d.id); if (shuffled) shuffle(state.order); state.pos = 0; state.revealed = false; state.test = null; }
+function setKnown(id, val) { val ? known.add(id) : known.delete(id); saveKnown(); renderMeter(); renderChips(); }
+
+function renderMeter() {
+  const core = DATA.filter(d => d.core); const k = core.filter(d => known.has(d.id)).length;
+  $("#knownCount").textContent = k; $("#totalCount").textContent = core.length;
+  $("#barFill").style.width = (k / core.length * 100) + "%";
+}
+function renderChips() {
+  const count = c => { const all = DATA.filter(d => (c === "all" || d.c === c) && inLevel(d)); return all.filter(d => known.has(d.id)).length + "/" + all.length; };
+  const items = [["all", "전체", "Q3–11"], ...Object.entries(CATS).map(([k, v]) => [k, v.name, v.q])];
+  $("#chips").innerHTML = items.map(([k, name, q]) => `<button class="chip" data-part="${k}" aria-pressed="${state.part === k}"><b>${name}</b><span>${q} · ${count(k)}</span></button>`).join("");
+  document.querySelectorAll("#levelSeg button").forEach(b => b.setAttribute("aria-pressed", b.dataset.level === state.level));
+  document.querySelectorAll("#modeSeg button").forEach(b => b.setAttribute("aria-pressed", b.dataset.mode === state.mode));
+}
+
+/* ---------- navigation ---------- */
+const VIEWS = ["plan", "sentences", "tips"];
+function go(view, push) {
+  state.view = view;
+  VIEWS.forEach(v => { $("#view-" + v).hidden = v !== view; $("#nav-" + v).setAttribute("aria-selected", v === view); });
+  if (view === "plan") renderPlan(); else if (view === "sentences") { renderChips(); renderStudy(); } else renderTips();
+  if (push) { try { history.replaceState(null, "", "#" + view); } catch (e) { location.hash = view; } }
+}
+function fromHash() { const h = (location.hash || "").slice(1); return VIEWS.includes(h) ? h : "plan"; }
+window.addEventListener("hashchange", () => go(fromHash(), false));
+
+/* ---------- study views ---------- */
+function renderStudy() { if (state.mode === "card") renderCard(); else if (state.mode === "list") renderList(); else renderTest(); }
+function emptyMsg() { return `<div class="empty"><p class="en" style="font-size:22px;margin:0 0 6px">All done.</p>이 범위의 문장을 모두 외웠어요. '못 외운 문장만'을 끄면 다시 복습할 수 있어요.</div>`; }
+function head(d) {
+  return `<div class="card-head"><div class="left"><span class="tag">${CATS[d.c].q} · ${esc(d.g)}</span>${srcBadge(d)}</div>${known.has(d.id) ? '<span class="known-pill">외움</span>' : ""}</div>`;
+}
+function renderCard() {
+  const area = $("#studyArea");
+  if (!state.order.length) { area.innerHTML = emptyMsg(); return; }
+  if (state.pos >= state.order.length) state.pos = 0;
+  const d = byId(state.order[state.pos]);
+  area.innerHTML = `
+    <div style="display:grid;gap:12px">
+      <div class="deck-meta"><span class="tag">${state.pos + 1} / ${state.order.length}</span><button class="btn sm" id="shuffleBtn">순서 섞기</button></div>
+      <article class="card" id="card" tabindex="0" aria-label="문장 카드">
+        ${head(d)}
+        <p class="card-ko">${fmtKo(d.ko)}</p>
+        ${state.revealed
+          ? `<div class="card-en-wrap"><div class="card-en-row"><p class="en card-en">${fmtEn(d.en)}</p>${speakBtn(d.id)}</div>${d.tip ? `<p class="tipline">${esc(d.tip)}</p>` : ""}</div>`
+          : `<button class="reveal" id="revealBtn">영어로 소리 내어 말해 본 뒤 눌러서 확인</button>`}
+      </article>
+      <div class="card-actions">
+        <button class="btn navbtn" id="prevBtn" aria-label="이전 카드">←</button>
+        <button class="btn again" id="againBtn">다시 볼래요</button>
+        <button class="btn good" id="knowBtn">외웠어요</button>
+        <button class="btn navbtn" id="nextBtn" aria-label="다음 카드">→</button>
+      </div>
+      <p class="kbd"><kbd>Space</kbd> 뒤집기 · <kbd>←</kbd><kbd>→</kbd> 이동 · <kbd>K</kbd> 외웠어요 · <kbd>J</kbd> 다시</p>
+    </div>`;
+}
+function cardStep(delta) { if (!state.order.length) return; state.pos = (state.pos + delta + state.order.length) % state.order.length; state.revealed = false; renderCard(); }
+function cardMark(val) {
+  const id = state.order[state.pos]; if (!id) return;
+  setKnown(id, val);
+  if (val && state.onlyLeft) { state.order.splice(state.pos, 1); state.revealed = false; renderCard(); } else cardStep(1);
+}
+function renderList() {
+  const rows = filtered(); const area = $("#studyArea");
+  if (!rows.length) { area.innerHTML = emptyMsg(); return; }
+  let html = `<div style="display:grid;gap:10px"><div class="deck-meta"><span class="tag">${rows.length}개 문장</span>
+    <label class="toggle"><input type="checkbox" id="maskToggle" ${state.masked ? "checked" : ""}> 영어 가리기 (눌러서 확인)</label></div>`;
+  let lastKey = "";
+  const groups = [];
+  rows.forEach(d => { const k = d.c + "|" + d.g; if (k !== lastKey) { groups.push({ c: d.c, g: d.g, items: [] }); lastKey = k; } groups[groups.length - 1].items.push(d); });
+  for (const gr of groups) {
+    html += `<h2 class="group-title">${esc(gr.g)} <span class="tag">${CATS[gr.c].q}</span></h2><ul class="list ${state.masked ? "masked" : ""}">` +
+      gr.items.map(d => `<li class="row">
+        <button class="check" data-check="${d.id}" aria-pressed="${known.has(d.id)}" aria-label="외움 표시">${CHECK_ICON}</button>
+        <div class="text"><p class="en ${state.peek.has(d.id) ? "peek" : ""}" data-peek="${d.id}">${fmtEn(d.en)}</p><p class="ko">${fmtKo(d.ko)}</p>${d.tip ? `<p class="tipline">${esc(d.tip)}</p>` : ""}</div>
+        ${speakBtn(d.id)}</li>`).join("") + `</ul>`;
+  }
+  area.innerHTML = html + "</div>";
+}
+
+/* typing test: only fixed template words are graded; slot words are free */
+const norm = w => w.toLowerCase().replace(/[’‘]/g, "'").replace(/[^a-z0-9'$]/g, "");
+function tokens(en) {
+  const out = [];
+  en.split(/(\[[^\]]+\])/).forEach(seg => {
+    if (!seg) return; const slot = seg.startsWith("[");
+    (slot ? seg.slice(1, -1) : seg).split(/\s+/).forEach(w => { if (w) out.push({ w, n: norm(w), slot }); });
+  });
+  return out;
+}
+function grade(input, en) {
+  const toks = tokens(en);
+  const fixed = toks.map((t, i) => [t, i]).filter(([t]) => !t.slot && t.n);
+  const user = input.split(/\s+/).map(norm).filter(Boolean);
+  const a = fixed.map(([t]) => t.n), n = a.length, m = user.length;
+  const dp = Array.from({ length: n + 1 }, () => new Array(m + 1).fill(0));
+  for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--) dp[i][j] = a[i] === user[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+  const hit = new Set(); let i = 0, j = 0;
+  while (i < n && j < m) { if (a[i] === user[j]) { hit.add(fixed[i][1]); i++; j++; } else if (dp[i + 1][j] >= dp[i][j + 1]) i++; else j++; }
+  return { toks, hit, score: n ? Math.round(hit.size / n * 100) : 100 };
+}
+function newTest() { const pool = filtered(); state.test = pool.length ? { id: pool[Math.floor(Math.random() * pool.length)].id, result: null, hint: false, input: "" } : null; }
+function renderTest() {
+  const area = $("#studyArea");
+  if (!state.test || !filtered().some(d => d.id === state.test.id)) newTest();
+  if (!state.test) { area.innerHTML = emptyMsg(); return; }
+  const t = state.test, d = byId(t.id);
+  const hint = tokens(d.en).map(x => x.slot ? "＿" : x.w[0] + "·".repeat(Math.max(0, x.w.length - 1))).join(" ");
+  let res = "";
+  if (t.result) {
+    const { toks, hit, score } = t.result; const pass = score >= 85;
+    res = `<div class="result" aria-live="polite">
+      <div class="score ${pass ? "pass" : "fail"}">${score}% ${pass ? "통과" : "한 번 더"}</div>
+      <div style="display:flex;gap:12px;align-items:flex-start"><p class="en answer" style="flex:1;min-width:0">${toks.map((x, i) => `<span class="${x.slot ? "free" : hit.has(i) ? "hit" : "miss"}">${esc(x.w)}</span>`).join(" ")}</p>${speakBtn(d.id)}</div>
+      ${d.tip ? `<p class="tipline">${esc(d.tip)}</p>` : ""}
+      <p class="note">초록은 맞힌 단어, 빨간 밑줄은 빠졌거나 틀린 단어예요. 노란 부분은 자유롭게 바꿔 써도 채점하지 않아요.</p>
+      <div class="actions">${pass && !known.has(d.id) ? `<button class="btn good" id="testKnow">외움으로 표시</button>` : ""}<button class="btn primary" id="testNext">다음 문제</button></div></div>`;
+  }
+  area.innerHTML = `<section class="test">${head(d)}
+      <p class="card-ko">${fmtKo(d.ko)}</p>
+      <textarea id="testInput" placeholder="영어 문장을 입력하세요" autocomplete="off" autocapitalize="off" spellcheck="false">${esc(t.input)}</textarea>
+      ${t.hint ? `<p class="hint">${esc(hint)}</p>` : ""}
+      ${t.result ? "" : `<div class="actions"><button class="btn primary" id="testCheck">채점하기 <span class="tag" style="color:inherit;opacity:.7">Enter</span></button><button class="btn" id="testHint">첫 글자 힌트</button><button class="btn" id="testSkip">건너뛰기</button></div>`}
+      ${res}</section>`;
+  if (!t.result) { const ta = $("#testInput"); ta.focus({ preventScroll: true }); ta.setSelectionRange(ta.value.length, ta.value.length); }
+}
+function checkTest() { const t = state.test; t.input = $("#testInput").value; if (!t.input.trim()) return; t.result = grade(t.input, byId(t.id).en); renderTest(); }
+
+/* ---------- 24h plan ---------- */
+const PLAN = [
+  { h: "0–1h", t: "시험 구조 파악하고 현재 실력 녹음", tasks: [
+    ["tips", "", "꿀팁 탭에서 'IM1 전략'과 파트별 시간표 읽기"],
+    ["tips", "", "타이머 'Q1–11 전체'로 아무 모의고사 1회 녹음 (못 해도 괜찮아요, 기준점이에요)"] ] },
+  { h: "1–3h", t: "Q1–2 지문 읽기: 발음·강세·억양", tasks: [
+    ["tips", "", "R·L·F·V·PH 발음과 '으' 약하게 연습 (꿀팁 탭 발음 표)"],
+    ["tips", "", "억양 올릴 곳 표시 연습: 고유명사, 숫자·시간, not, also, A↗ B↗ and C↘"],
+    ["tips", "q12", "지문 3개를 타이머로 녹음: 준비 때 한 번 소리 내 읽고, 답변 때 또박또박"] ] },
+  { h: "3–7h", t: "Q3–4 사진 묘사", tasks: [
+    ["sentences", "q34|tpl", "필수 템플릿 15문장 카드로 통암기"],
+    ["sentences", "q34|core", "사진 핵심 문장 카드 (동작·옷·사물)"],
+    ["tips", "q34", "사진 6장 타이머 연습: 1인, 2인, 3인 이상 각 2장"] ] },
+  { h: "7–11h", t: "Q5–7 질문 답변", tasks: [
+    ["sentences", "q57|tpl", "질문 카피법 템플릿 + 의문사 답변 암기"],
+    ["sentences", "q57|core", "이유 만능문장 (시간·돈·정보·스트레스) 암기"],
+    ["tips", "q57", "문제 8세트 타이머 연습. Q7은 '결론 + First + Also' 또는 'The other day' 경험 채우기"] ] },
+  { h: "11–14h", t: "Q8–10 정보 안내", tasks: [
+    ["tips", "", "전치사 표 외우기: on 날짜, at 시각·장소, in 방·도시·연도, on 주제, by 진행자, with 사람"],
+    ["sentences", "q810|tpl", "5가지 유형 템플릿 (일정·개인일정·이력서·면접·강좌) 암기"],
+    ["tips", "q810", "표 문제 5세트, 유형별 1개씩 타이머 연습"] ] },
+  { h: "14–18h", t: "Q11 의견 제시 (배점 가장 큼)", tasks: [
+    ["sentences", "q11|tpl", "60초 템플릿 11문장 쓰기 테스트까지 통과"],
+    ["sentences", "q11|core", "이유 만능문장 (배움·돈·집중·소통·직장·건강) 암기"],
+    ["tips", "q11", "문제 5개 녹음. 최소 '결론 + 이유1 + 내 경험 예시'를 끝까지"] ] },
+  { h: "18–22h", t: "모의고사와 오답", tasks: [
+    ["tips", "", "모의고사 3회 녹음 (꿀팁 탭 맨 아래 영상 링크)"],
+    ["tips", "", "녹음 들으며 침묵·문법(시제)·동문서답 표시"],
+    ["sentences", "all|core", "'못 외운 문장만' 켜고 쓰기 테스트로 복습"] ] },
+  { h: "22–24h", t: "마무리", tasks: [
+    ["sentences", "all|tpl", "필수 템플릿 전체 카드 한 바퀴 (막힘 없이 나올 때까지)"],
+    ["tips", "", "모의고사 1회 최종 녹음"],
+    ["tips", "", "시험 당일 체크리스트 확인"] ] }
+];
+function renderPlan() {
+  const total = PLAN.reduce((s, b) => s + b.tasks.length, 0);
+  let html = `<div class="plan">
+    <div class="lead"><h2>24시간 공부 순서</h2>
+      <p class="note" style="font-size:14px">하루에 몰아서든 며칠에 나눠서든 공부 시간 합계 24시간 기준이에요. 체크는 이 브라우저에만 저장돼요. 완료 ${planDone.size} / ${total}</p>
+      <ul><li>IM1은 <b>11문제 모두 끝까지 말하기</b>가 핵심이에요. 어려운 문장보다 외운 템플릿을 틀리지 않게.</li>
+      <li>공부는 눈이 아니라 <b>입으로</b>. 카드는 영어를 소리 내 말해 본 뒤 뒤집으세요.</li>
+      <li>각 블록 끝에는 반드시 <b>타이머로 녹음</b>하고 들어 보세요.</li></ul></div>`;
+  PLAN.forEach((b, bi) => {
+    const doneAll = b.tasks.every((_, ti) => planDone.has(bi + "-" + ti));
+    html += `<div class="block ${doneAll ? "done" : ""}"><div class="block-head"><h3>${esc(b.t)}</h3><span class="hrs">${b.h}${doneAll ? " · 완료" : ""}</span></div>` +
+      b.tasks.map(([view, arg, text], ti) => {
+        const key = bi + "-" + ti, on = planDone.has(key);
+        const link = arg ? `<button class="btn sm" data-jump="${view}|${arg}" style="margin-top:6px">${view === "tips" ? "타이머 열기" : "문장 열기"}</button>` : "";
+        return `<div class="task ${on ? "on" : ""}"><button class="check" data-plan="${key}" aria-pressed="${on}" aria-label="완료 표시">${CHECK_ICON}</button><div><p>${esc(text)}</p>${link}</div></div>`;
+      }).join("") + `</div>`;
+  });
+  $("#view-plan").innerHTML = html + "</div>";
+}
+
+/* ---------- tips + timer ---------- */
+const TIMERS = {
+  q12:  { name: "Q1–2", steps: [["Q1 준비", 45], ["Q1 답변", 45], ["Q2 준비", 45], ["Q2 답변", 45]] },
+  q34:  { name: "Q3–4", steps: [["Q3 준비", 45], ["Q3 답변", 30], ["Q4 준비", 45], ["Q4 답변", 30]] },
+  q57:  { name: "Q5–7", steps: [["Q5 준비", 3], ["Q5 답변", 15], ["Q6 준비", 3], ["Q6 답변", 15], ["Q7 준비", 3], ["Q7 답변", 30]] },
+  q810: { name: "Q8–10", steps: [["표 읽기", 45], ["Q8 준비", 3], ["Q8 답변", 15], ["Q9 준비", 3], ["Q9 답변", 15], ["Q10 준비", 3], ["Q10 답변", 30]] },
+  q11:  { name: "Q11", steps: [["Q11 준비", 45], ["Q11 답변", 60]] }
+};
+TIMERS.all = { name: "Q1–11 전체", steps: [].concat(...["q12", "q34", "q57", "q810", "q11"].map(k => TIMERS[k].steps)) };
+const timer = { key: "q34", idx: -1, end: 0, tick: null, ctx: null };
+function beep(high) {
+  try {
+    if (!timer.ctx) timer.ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const o = timer.ctx.createOscillator(), g = timer.ctx.createGain();
+    o.frequency.value = high ? 1046 : 784; o.connect(g); g.connect(timer.ctx.destination);
+    g.gain.setValueAtTime(.15, timer.ctx.currentTime); g.gain.exponentialRampToValueAtTime(.001, timer.ctx.currentTime + .35);
+    o.start(); o.stop(timer.ctx.currentTime + .36);
+  } catch (e) {}
+}
+function timerStart() { timerStop(); timer.idx = 0; timer.end = Date.now() + TIMERS[timer.key].steps[0][1] * 1000; beep(false); timer.tick = setInterval(timerLoop, 200); timerPaint(); }
+function timerStop() { clearInterval(timer.tick); timer.tick = null; timer.idx = -1; timerPaint(); }
+function timerLoop() {
+  const steps = TIMERS[timer.key].steps;
+  if (Date.now() >= timer.end) {
+    timer.idx++;
+    if (timer.idx >= steps.length) { beep(true); timerStop(); return; }
+    timer.end = Date.now() + steps[timer.idx][1] * 1000; beep(steps[timer.idx][0].includes("답변"));
+  }
+  timerPaint();
+}
+function timerPaint() {
+  const el = $("#timerBox"); if (!el) return;
+  const steps = TIMERS[timer.key].steps; const running = timer.idx >= 0;
+  const cur = running ? steps[timer.idx] : steps[0];
+  const left = running ? Math.max(0, Math.ceil((timer.end - Date.now()) / 1000)) : cur[1];
+  el.querySelector(".clock").className = "clock" + (running && cur[0].includes("답변") ? " speak" : "");
+  el.querySelector(".clock b").textContent = Math.floor(left / 60) + ":" + String(left % 60).padStart(2, "0");
+  el.querySelector(".clock span").textContent = running ? (cur[0].includes("답변") ? cur[0] + " · Begin speaking now" : cur[0]) : "시작을 누르면 실제 시험 순서대로 넘어가요";
+  el.querySelector(".steps").innerHTML = steps.map((s, i) => `<i class="${i === timer.idx ? "now" : i < timer.idx ? "past" : ""}">${esc(s[0])} ${s[1]}s</i>`).join("");
+  el.querySelector("#timerGo").textContent = running ? "처음부터" : "시작";
+  el.querySelectorAll(".timer-presets button").forEach(b => b.setAttribute("aria-pressed", b.dataset.timer === timer.key));
+}
+
+const TIPS = [
+  { id: "q12", q: "Q1–2", name: "지문 읽기", time: "준비 45초 · 답변 45초 · 채점: 발음, 강세, 억양", do: [
+      "준비 시간에 지문 전체를 <b>큰 소리로</b> 한 번 쭉 읽고, 막힌 단어만 반복 연습해요.",
+      "채점자는 <b>첫 번째 읽기</b>를 주의 깊게 들어요. 다 읽고 남은 시간은 가만히 있으면 돼요.",
+      "실제 시험 지문은 생각보다 짧고 쉽다는 후기가 많아요. 천천히 또박또박 읽어도 시간이 남아요.",
+      "억양 올릴 곳: 고유명사, 숫자·시간·날짜·요일, 부정어(not, don't, can't), please·only·also·all·every.",
+      "나열은 <code>roses ↗, tulips ↗, and sunflowers ↘</code>처럼 올리고 올리고 내려요.",
+      "끊어 읽기는 전치사+명사 앞, to부정사 앞, 쉼표, 접속사 앞에서만 살짝."],
+    warn: [
+      "모노톤(불경 외우듯 일정한 톤)과 소심톤(작은 목소리)은 전 파트에서 감점 요인이에요.",
+      "쉬운 단어 발음·강세를 반복해서 틀리는 게 가장 큰 감점이에요. 어려운 단어 하나 틀리는 건 괜찮아요.",
+      "어려운 단어는 질문하듯 올리지 말고 자신 있게. 틀렸으면 그 단어만 다시 읽고 계속 가요. 처음 문장으로 돌아가지 마세요."] },
+  { id: "q34", q: "Q3–4", name: "사진 묘사", time: "준비 45초 · 답변 30초", do: [
+      "순서: <code>This is a picture taken at ~</code> → <code>The first thing I can see from this picture is ~</code> → 위치별 디테일.",
+      "위치: <code>In the foreground / In the middle / In the background of the picture</code>, 좌우는 <code>On the left/right side of the picture</code>.",
+      "사람 동작은 현재진행형(be + -ing)으로 말해요.",
+      "1인 사진: 그 사람을 자세히, 시간이 남으면 <code>Overall, it seems like ~</code>.",
+      "2인 사진: 1인당 한 문장 + 둘을 묶는 공통 문장 + 사물·배경 한 문장. <code>One of them ~ / The other ~</code>.",
+      "3인 이상: 묶어서 <code>Some of them ~ / Most of them ~ / The others ~</code>.",
+      "쉬운 것부터 찾아 말하세요. 막히면 옷차림, 웃고 있다, 뒤에 창문이 있다도 충분해요."],
+    warn: [
+      "한 사람에게 꽂혀 30초를 다 쓰지 마세요. 핵심이 들어가면 디테일은 빠져도 괜찮아요.",
+      "단어가 안 떠오르면 넓은 단어로: cardigan → clothes. 생각하느라 멈추는 게 더 큰 손해예요."] },
+  { id: "q57", q: "Q5–7", name: "질문 답변", time: "준비 3초 · 답변 15 / 15 / 30초", do: [
+      "첫 화면에서는 <code>about ~</code> 뒤의 주제만 확인하세요.",
+      "질문을 그대로 읽으며 you를 I로, your를 my로만 바꿔 답하세요. 감점 없고 7초 정도가 자연스럽게 채워져요.",
+      "<code>Have you ever + p.p.?</code> → <code>Yes, I have + p.p.</code> / <code>Do you ~?</code> → <code>Yes, I ~</code>. Yes가 이어 말하기 쉬워요.",
+      "이유는 만능문장으로: <code>because it's very useful and convenient</code>, <code>I can save time</code>.",
+      "Q5–6은 두 문장이면 충분해요. 연결어 and, because, so만 써도 돼요.",
+      "Q7: <code>I think [보기] is the most important.</code> → <code>First, ~</code> → <code>Also, ~</code>. 시간이 남으면 <code>Therefore, ~</code>.",
+      "두 번째 이유가 막히면: <code>The other day, I [과거 경험]. I really liked it. It was awesome.</code>",
+      "어려운 문제엔 Q11 만능문장을 당겨 써요. Q5–7과 Q11 문장은 서로 바꿔 써도 돼요."],
+    warn: [
+      "진짜 내 이야기를 한국어로 생각하면 영작이 막혀요. 쉬운 문장이 유리해요.",
+      "외운 문장을 문제와 상관없이 그대로 말하면 동문서답이 돼요. 문제 단어로 바꿔 끼우세요 (on the internet → on social media).",
+      "'인스타 말할까 페북 말할까' 고민 금지. 처음 떠오른 걸 바로 말해요.",
+      "경험 이야기는 과거형: can → was able to, like → liked."] },
+  { id: "q810", q: "Q8–10", name: "정보 안내", time: "표 읽기 45초 · 준비 3초 · 답변 15 / 15 / 30초 (Q10은 두 번 들려줌)", do: [
+      "표는 계속 보이고 질문은 안 보여요. 읽는 시간에 표 종류, 날짜·장소, 요금 조건, 세션 이름 발음을 확인하세요.",
+      "듣기를 다 못 알아들어도 키워드(when, where, 사람 이름, 주제어)만 잡고 표에서 그 칸을 읽으면 돼요.",
+      "Q8: 언제·어디서·몇 시·얼마 → <code>It will be held on ~ at ~</code>, <code>It will start at ~</code>, <code>It's $20</code>.",
+      "Q9: 틀린 정보 확인 → <code>No, actually ~</code>. 취소는 <code>There was supposed to be ~, but it has been canceled.</code>",
+      "Q10: <code>There are two sessions. First, at ~, there is ~. Next, at ~, there is ~.</code> 2개 정도, 짧게.",
+      "유형 5가지를 다 준비하세요: 행사 일정표(최빈출), 개인 일정표, 이력서, 면접 일정표, 강좌 시간표."],
+    warn: [
+      "단어만 던지지 말고 주어+동사가 있는 문장으로 말하세요. '6월 20일, 힐튼 호텔'만 말하면 안 돼요.",
+      "<code>will be start</code>, <code>it is start</code>, 지금도 일하는데 <code>worked</code> 같은 문법 실수는 감점이에요.",
+      "이력서는 키워드를 바꿔 물어요 (children ↔ elementary school, latest degree = 가장 최근 학위)."] },
+  { id: "q11", q: "Q11", name: "의견 제시", time: "준비 45초 · 답변 60초 · 배점 5점 (다른 문항은 3점)", do: [
+      "준비 시간: 문제 해석에 최소 10초 → 쓸 만능문장 떠올리기 → 여유 있으면 약자로 메모.",
+      "구조: 결론 → <code>Let me explain why I think this way.</code> → 이유1 → 내 경험 예시 → 이유2 → 뉴스 예시 → 결론.",
+      "이유 문장은 만능문장의 주어를 문제에 맞게(people, students, employees) 바꾸고 <code>if/when + 문제 내용</code>으로 연결해요.",
+      "경험 예시: <code>From my experience, I used to work at a company. I really liked the job. For me, it was very helpful because I was able to ~</code>.",
+      "뉴스 예시: <code>According to a recent news report, the majority of [office workers] in Korea said that ~</code>.",
+      "시간이 모자라면 이유2나 뉴스 예시는 빼도 돼요. 말하다 잘려도 앞부분이 좋으면 감점이 없어요."],
+    warn: [
+      "IM1이라도 절대 포기하지 마세요. 배점이 가장 커요.",
+      "이유만 있거나 예시만 있으면 감점이에요. 최소 이유 1개 + 예시 1개.",
+      "30초 넘게 침묵하지 마세요. 5초 미만으로 남는 건 괜찮아요.",
+      "외운 답변을 문제와 상관없이 읊으면 동문서답으로 매우 낮은 점수가 나와요."] }
+];
+function renderTips() {
+  const presets = ["q12", "q34", "q57", "q810", "q11", "all"].map(k => `<button data-timer="${k}">${TIMERS[k].name}</button>`).join("");
+  let html = `<div class="tips">
+    <div class="timer" id="timerBox"><div class="deck-meta"><span class="tag">실전 타이머 · 녹음 앱을 켜고 같이 쓰세요</span></div>
+      <div class="timer-presets">${presets}</div>
+      <div class="clock"><b>0:45</b><span></span></div>
+      <div class="steps"></div>
+      <div class="actions"><button class="btn" id="timerGo">시작</button><button class="btn ghost" id="timerStop">정지</button></div></div>
+
+    <div class="lead"><h2>IM1(110점) 전략</h2><ul>
+      <li><b>11문제 전부 무언가를 말하세요.</b> 무응답이 가장 큰 손해예요.</li>
+      <li><b>쉬운 문장, 외운 문장.</b> 강의 기준으로 IM3~IH도 '문제에 맞는 답을 알아듣게'면 충분하다고 해요. IM1은 템플릿을 틀리지 않고 끝까지 말하는 데 집중하세요.</li>
+      <li><b>동문서답 금지.</b> 외운 문장의 노란 자리를 문제 단어로 바꿔 끼우세요.</li>
+      <li><b>크고 자신 있게.</b> 모노톤·작은 목소리는 모든 파트에서 감점이에요.</li>
+      <li><b>시제 조심.</b> 경험은 과거형, 지금도 하는 일은 has worked.</li>
+      <li><b>Q11은 반드시 이유 1 + 예시 1.</b> 배점이 가장 커요.</li></ul></div>`;
+  TIPS.forEach(t => {
+    html += `<article class="tipcard" id="tip-${t.id}"><div class="tipcard-head"><h2>${t.q} ${t.name}</h2><button class="btn sm" data-settimer="${t.id}">이 파트 타이머</button></div>
+      <p class="tag" style="margin:0">${t.time}</p>
+      <div><h4>이렇게 하세요</h4><ul>${t.do.map(x => `<li>${x}</li>`).join("")}</ul></div>
+      <div><h4>조심하세요</h4><ul class="warn">${t.warn.map(x => `<li>${x}</li>`).join("")}</ul></div>
+      ${t.id !== "q12" ? `<button class="btn sm" data-jump="sentences|${t.id}|tpl" style="justify-self:start">이 파트 필수 템플릿 외우기</button>` : ""}</article>`;
+  });
+  html += `
+    <article class="tipcard"><h2>발음·강세 체크</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>소리</th><th>방법</th><th>연습 단어</th></tr></thead><tbody>
+        <tr><td>R</td><td>'우'로 시작해 혀를 뒤로 당겨요</td><td><code>ready, around, garden</code></td></tr>
+        <tr><td>L</td><td>혀끝을 윗니 뒤 잇몸에 찍고 '얼'로 시작</td><td><code>last, also, welcome</code></td></tr>
+        <tr><td>F</td><td>윗니로 아랫입술 살짝, 바람만 (성대 X)</td><td><code>flowers, photos, physical, phone</code></td></tr>
+        <tr><td>V</td><td>F와 같은 입 모양 + 성대 울림</td><td><code>various</code></td></tr>
+        <tr><td>th</td><td>혀를 이 사이에 두고 바람</td><td><code>thank you, thirty</code></td></tr>
+        <tr><td>'으' 빼기</td><td>한국어 '으'를 약하게</td><td><code>smartphone, apartment</code></td></tr>
+      </tbody></table></div>
+      <p class="note">강세 주의: <b>I</b>tem · be<b>GIN</b> · <b>WEL</b>come · <b>SIG</b>nature · <b>MIN</b>ute · <b>VA</b>rious · ap<b>PROX</b>imately · con<b>VE</b>nient · em<b>PLOY</b>ees · ef<b>FI</b>ciently · pro<b>DUC</b>tively · ex<b>PE</b>rience · ma<b>JOR</b>ity · a<b>GREE</b></p></article>
+
+    <article class="tipcard"><h2>Q8–10 전치사</h2>
+      <div class="tbl-wrap"><table><thead><tr><th>쓰임</th><th>전치사</th><th>예</th></tr></thead><tbody>
+        <tr><td>날짜·요일</td><td>on</td><td><code>on October 24th, on Mondays</code></td></tr>
+        <tr><td>시각</td><td>at</td><td><code>at 9 a.m., at noon</code></td></tr>
+        <tr><td>특정 장소·주소</td><td>at</td><td><code>at Hilton Hotel, at 1330 Main Street</code></td></tr>
+        <tr><td>방·도시·나라·연도</td><td>in</td><td><code>in Room 105, in Seoul, in 2010</code></td></tr>
+        <tr><td>기간</td><td>from ~ to</td><td><code>from 9:30 to 10 a.m.</code></td></tr>
+        <tr><td>주제</td><td>on</td><td><code>a workshop on marketing</code></td></tr>
+        <tr><td>진행자 / 함께 하는 사람</td><td>by / with</td><td><code>by Ray Kingston / with Jane White</code></td></tr>
+        <tr><td>출신 회사·학교 / 직책</td><td>from / as</td><td><code>from B Systems / as a director</code></td></tr>
+        <tr><td>비행편</td><td>on</td><td><code>on American Air 105</code></td></tr>
+      </tbody></table></div></article>
+
+    <article class="tipcard"><h2>시험 당일 체크리스트</h2><ul>
+      <li>시험장 기기가 낡으면 옆 사람 목소리가 크게 들려요. 후기를 보고 시험장을 고르세요.</li>
+      <li>옆 사람이 먼저 끝나도 신경 쓰지 말고 내 속도로.</li>
+      <li>시험 직전에 모의고사 1회로 입 풀기.</li>
+      <li>필수 템플릿 첫 문장들만 한 번 더 소리 내 읽기: Q3 첫 두 줄, Q7 첫 줄, Q8 <code>It will be held</code>, Q11 첫 세 줄.</li>
+      <li>문법을 틀릴 것 같으면 더 쉬운 문장으로. 멈추지만 말기.</li></ul></article>
+
+    <article class="tipcard"><h2>자료 출처</h2><div class="links">
+      <a href="https://youtu.be/CHCq0vh6Frg" target="_blank" rel="noopener">시계토끼제니쌤 · 파트별 핵심 강의 (노베이스 3시간 반)</a>
+      <a href="https://youtu.be/ZzyolBABSIw" target="_blank" rel="noopener">시계토끼 Part 2~5 만능문장 (문장 데이터 출처)</a>
+      <a href="https://community.linkareer.com/jayuu/4297635" target="_blank" rel="noopener">링커리어 · 노베이스 2주 독학 IH 후기</a>
+      <a href="https://youtu.be/KZZvBoU5n9Y" target="_blank" rel="noopener">모의고사 5회 (풀이 포함)</a>
+      <a href="https://youtu.be/JhB1x9CdQ8c" target="_blank" rel="noopener">모의고사 15회</a>
+      <a href="https://www.youtube.com/watch?v=ZsPVQxscHBQ" target="_blank" rel="noopener">5일 벼락치기</a></div>
+      <p class="note">'보충' 표시 문장은 강의·후기에 없어서 Q5–6 의문사 답변용으로 추가한 문장이에요.</p></article>
+  </div>`;
+  $("#view-tips").innerHTML = html;
+  timerPaint();
+}
+
+/* ---------- events ---------- */
+document.addEventListener("click", e => {
+  const el = e.target.closest("button, [data-peek]"); if (!el) return;
+  const ds = el.dataset;
+  if (ds.speak) { speak(byId(ds.speak).en); return; }
+  if (ds.view) { go(ds.view, true); return; }
+  if (ds.part) { state.part = ds.part; rebuildOrder(false); renderChips(); renderStudy(); return; }
+  if (ds.level) { state.level = ds.level; rebuildOrder(false); renderChips(); renderStudy(); return; }
+  if (ds.mode) { state.mode = ds.mode; renderChips(); renderStudy(); return; }
+  if (ds.check) { setKnown(ds.check, !known.has(ds.check)); if (state.onlyLeft) rebuildOrder(false); renderList(); return; }
+  if (ds.plan) { planDone.has(ds.plan) ? planDone.delete(ds.plan) : planDone.add(ds.plan); store("toeic-im1-plan", [...planDone]); renderPlan(); return; }
+  if (ds.peek && state.masked) { state.peek.has(ds.peek) ? state.peek.delete(ds.peek) : state.peek.add(ds.peek); el.classList.toggle("peek"); return; }
+  if (ds.timer) { timer.key = ds.timer; timerStop(); return; }
+  if (ds.settimer) { timer.key = ds.settimer; timerStop(); $("#timerBox").scrollIntoView({ behavior: "smooth", block: "start" }); return; }
+  if (ds.jump) {
+    const [view, a, b] = ds.jump.split("|");
+    if (view === "sentences") { const [part, level] = b ? [a, b] : [a, "core"]; state.part = part; state.level = level; state.mode = "card"; rebuildOrder(false); go("sentences", true); }
+    else { go("tips", true); if (a) { timer.key = a; timerStop(); } requestAnimationFrame(() => { const t = $("#timerBox"); if (t) t.scrollIntoView({ block: "start" }); }); }
+    window.scrollTo({ top: 0 });
+    return;
+  }
+  switch (el.id) {
+    case "revealBtn": state.revealed = true; renderCard(); break;
+    case "prevBtn": cardStep(-1); break;
+    case "nextBtn": cardStep(1); break;
+    case "knowBtn": cardMark(true); break;
+    case "againBtn": cardMark(false); break;
+    case "shuffleBtn": rebuildOrder(true); renderCard(); break;
+    case "testCheck": checkTest(); break;
+    case "testHint": state.test.input = $("#testInput").value; state.test.hint = true; renderTest(); break;
+    case "testSkip": case "testNext": newTest(); renderTest(); break;
+    case "testKnow": setKnown(state.test.id, true); newTest(); renderTest(); break;
+    case "timerGo": timerStart(); break;
+    case "timerStop": timerStop(); break;
+  }
+});
+document.addEventListener("change", e => {
+  if (e.target.id === "onlyLeft") { state.onlyLeft = e.target.checked; rebuildOrder(false); renderChips(); renderStudy(); }
+  if (e.target.id === "maskToggle") { state.masked = e.target.checked; state.peek.clear(); renderList(); }
+});
+document.addEventListener("keydown", e => {
+  if (state.view !== "sentences") return;
+  if (state.mode === "test") {
+    if (e.target.id === "testInput" && e.key === "Enter" && !e.shiftKey) { e.preventDefault(); checkTest(); }
+    else if (e.key === "Enter" && state.test && state.test.result && e.target.tagName !== "BUTTON") { e.preventDefault(); newTest(); renderTest(); }
+    return;
+  }
+  if (state.mode !== "card" || /INPUT|TEXTAREA/.test(e.target.tagName)) return;
+  if (e.key === " ") { if (e.target.tagName === "BUTTON") return; e.preventDefault(); state.revealed = !state.revealed; renderCard(); }
+  else if (e.key === "ArrowRight") cardStep(1);
+  else if (e.key === "ArrowLeft") cardStep(-1);
+  else if (e.key === "k" || e.key === "K") cardMark(true);
+  else if (e.key === "j" || e.key === "J") cardMark(false);
+});
+
+rebuildOrder(false); renderMeter(); go(fromHash(), false);
+</script>
+
+</body>
+</html>
